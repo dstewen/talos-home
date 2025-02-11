@@ -43,6 +43,13 @@ nodes:
         mtu: 1500
         vip:
           ip: "192.168.10.254"
+    extensionServices:
+      - name: nut-client
+        configFiles:
+          - content: |-
+              MONITOR ups@192.168.10.23 1 upsmon_local mypassword secondary
+              SHUTDOWNCMD "/sbin/poweroff"
+            mountPath: /usr/local/etc/nut/upsmon.conf
   - hostname: "ms2"
     ipAddress: "192.168.10.52"
     installDiskSelector:
@@ -63,6 +70,13 @@ nodes:
         mtu: 1500
         vip:
           ip: "192.168.10.254"
+    extensionServices:
+      - name: nut-client
+        configFiles:
+          - content: |-
+              MONITOR ups@192.168.10.23 1 upsmon_local mypassword secondary
+              SHUTDOWNCMD "/sbin/poweroff"
+            mountPath: /usr/local/etc/nut/upsmon.conf
   - hostname: "ms3"
     ipAddress: "192.168.10.53"
     installDiskSelector:
@@ -83,6 +97,13 @@ nodes:
         mtu: 1500
         vip:
           ip: "192.168.10.254"
+    extensionServices:
+      - name: nut-client
+        configFiles:
+          - content: |-
+              MONITOR ups@192.168.10.23 1 upsmon_local mypassword secondary
+              SHUTDOWNCMD "/sbin/poweroff"
+            mountPath: /usr/local/etc/nut/upsmon.conf
   - hostname: "blade5"
     ipAddress: "192.168.10.35"
     installDisk: "/dev/disk/by-id/nvme-WD_Blue_SN570_500GB_220628800811"
@@ -162,7 +183,88 @@ patches:
 
 # Controller patches
 controlPlane:
+
+  schematic:
+    customization:
+      extraKernelArgs:
+        - apparmor=0        # Less security, more speed
+        - init_on_alloc=0   # Less security, more speed
+        - init_on_free=0    # Less security, more speed
+        - intel_iommu=on    # PCI Passthrough
+        - iommu=pt          # PCI Passthrough
+        - mitigations=off   # Less security, more speed
+#        - net.ifnames=1     # Enable predictable NIC naming
+        - security=none     # Less security, more speed
+
+      systemExtensions:
+        officialExtensions:
+          - siderolabs/gasket-driver    # Google Coral M.2
+          - siderolabs/i915             # MS-01 CPU iGraphics
+          - siderolabs/intel-ucode      # Intel ucode
+          - siderolabs/mei
+          - siderolabs/thunderbolt      # Thunderbolt networking
+
   patches:
     - "@./patches/controller/admission-controller-patch.yaml"
     - "@./patches/controller/cluster.yaml"
 
+    # Configure NFS mount options
+    - |
+      machine:
+        files:
+          - op: overwrite
+            path: /etc/nfsmount.conf
+            permissions: 0o644
+            content: |
+              [ NFSMount_Global_Options ]
+              nfsvers=4.1
+              hard=True
+              nconnect=16
+              noatime=True
+
+    # Custom sysfs settings
+    - |-
+      machine:
+        sysfs:
+          devices.system.cpu.intel_pstate.hwp_dynamic_boost: 1
+          devices.system.cpu.cpu0.cpufreq.energy_performance_preference: balance_performance
+          devices.system.cpu.cpu1.cpufreq.energy_performance_preference: balance_performance
+          devices.system.cpu.cpu2.cpufreq.energy_performance_preference: balance_performance
+          devices.system.cpu.cpu3.cpufreq.energy_performance_preference: balance_performance
+          devices.system.cpu.cpu4.cpufreq.energy_performance_preference: balance_performance
+          devices.system.cpu.cpu5.cpufreq.energy_performance_preference: balance_performance
+          devices.system.cpu.cpu6.cpufreq.energy_performance_preference: balance_performance
+          devices.system.cpu.cpu7.cpufreq.energy_performance_preference: balance_performance
+          devices.system.cpu.cpu8.cpufreq.energy_performance_preference: balance_performance
+          devices.system.cpu.cpu9.cpufreq.energy_performance_preference: balance_performance
+          devices.system.cpu.cpu10.cpufreq.energy_performance_preference: balance_performance
+          devices.system.cpu.cpu11.cpufreq.energy_performance_preference: balance_performance
+          devices.system.cpu.cpu12.cpufreq.energy_performance_preference: balance_performance
+          devices.system.cpu.cpu13.cpufreq.energy_performance_preference: balance_performance
+          devices.system.cpu.cpu14.cpufreq.energy_performance_preference: balance_performance
+          devices.system.cpu.cpu15.cpufreq.energy_performance_preference: balance_performance
+          devices.system.cpu.cpu16.cpufreq.energy_performance_preference: balance_performance
+          devices.system.cpu.cpu17.cpufreq.energy_performance_preference: balance_performance
+          devices.system.cpu.cpu18.cpufreq.energy_performance_preference: balance_performance
+          devices.system.cpu.cpu19.cpufreq.energy_performance_preference: balance_performance
+
+    # Enable thunderbolt + net
+    - |-
+      machine:
+        kernel:
+          modules:
+            - name: nbd
+            - name: thunderbolt
+            - name: thunderbolt_net
+
+    # Various udev rules
+    - |-
+      machine:
+        udev:
+          rules:
+            # Thunderbolt
+            - ACTION=="add", SUBSYSTEM=="thunderbolt", ATTR{authorized}=="0", ATTR{authorized}="1"
+            # Intel GPU
+            - SUBSYSTEM=="drm", KERNEL=="renderD*", GROUP="44", MODE="0660"
+            # Coral Edge TPU
+            - SUBSYSTEM=="apex", KERNEL=="apex*", GROUP="44", MODE="0660"
