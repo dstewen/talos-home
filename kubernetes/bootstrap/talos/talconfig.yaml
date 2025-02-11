@@ -1,0 +1,168 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/budimanjojo/talhelper/master/pkg/config/schemas/talconfig.json
+---
+# renovate: datasource=docker depName=ghcr.io/siderolabs/installer
+talosVersion: v1.9.3
+# renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
+kubernetesVersion: v1.32.1
+
+clusterName: kubernetes
+endpoint: https://192.168.10.254:6443
+
+clusterPodNets:
+  - "10.69.0.0/16"
+clusterSvcNets:
+  - "10.96.0.0/16"
+
+additionalApiServerCertSans: &sans
+  - "192.168.10.254"
+  - "127.0.0.1"
+additionalMachineCertSans: *sans
+
+# Disable built-in Flannel to use Cilium
+cniConfig:
+  name: none
+
+nodes:
+  - hostname: "ms1"
+    ipAddress: "192.168.10.51"
+    installDiskSelector:
+      serial: "1925E20E2038"
+    machineSpec:
+      secureboot: false
+    talosImageURL: factory.talos.dev/installer/743d942690991fb5b20d07e54b6d33c60b19d7918e14d61173d79e718ebc0b47
+    controlPlane: true
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "58:47:ca:77:cf:36"
+        dhcp: false
+        addresses:
+          - "192.168.10.51/24"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "192.168.10.1"
+        mtu: 1500
+        vip:
+          ip: "192.168.10.254"
+  - hostname: "ms2"
+    ipAddress: "192.168.10.52"
+    installDiskSelector:
+      serial: "220628801124"
+    machineSpec:
+      secureboot: false
+    talosImageURL: factory.talos.dev/installer/743d942690991fb5b20d07e54b6d33c60b19d7918e14d61173d79e718ebc0b47
+    controlPlane: true
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "58:47:ca:78:f1:32"
+        dhcp: false
+        addresses:
+          - "192.168.10.52/24"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "192.168.10.1"
+        mtu: 1500
+        vip:
+          ip: "192.168.10.254"
+  - hostname: "ms3"
+    ipAddress: "192.168.10.53"
+    installDiskSelector:
+      serial: "22061X806789"
+    machineSpec:
+      secureboot: false
+    talosImageURL: factory.talos.dev/installer/743d942690991fb5b20d07e54b6d33c60b19d7918e14d61173d79e718ebc0b47
+    controlPlane: true
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "58:47:ca:78:f8:4a"
+        dhcp: false
+        addresses:
+          - "192.168.10.53/24"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "192.168.10.1"
+        mtu: 1500
+        vip:
+          ip: "192.168.10.254"
+  - hostname: "blade5"
+    ipAddress: "192.168.10.35"
+    installDisk: "/dev/disk/by-id/nvme-WD_Blue_SN570_500GB_220628800811"
+    machineSpec:
+      secureboot: false
+    talosImageURL: factory.talos.dev/installer/d62d27140eb15f9b984bb8277c9f4bab1ed83435edc09afa553f075ef323f103
+    controlPlane: false
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "e4:5f:01:ec:16:b4"
+        dhcp: false
+        addresses:
+          - "192.168.10.35/24"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "192.168.10.1"
+        mtu: 1500
+  - hostname: "blade6"
+    ipAddress: "192.168.10.36"
+    installDisk: "/dev/disk/by-id/nvme-WD_Blue_SN570_500GB_220628800731"
+    machineSpec:
+      secureboot: false
+    talosImageURL: factory.talos.dev/installer/d62d27140eb15f9b984bb8277c9f4bab1ed83435edc09afa553f075ef323f103
+    controlPlane: false
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "e4:5f:01:ec:16:a5"
+        dhcp: false
+        addresses:
+          - "192.168.10.36/24"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "192.168.10.1"
+        mtu: 1500
+  - hostname: "blade7"
+    ipAddress: "192.168.10.37"
+    installDisk: "/dev/disk/by-id/nvme-WD_Blue_SN570_500GB_220628800801"
+    machineSpec:
+      secureboot: false
+    talosImageURL: factory.talos.dev/installer/d62d27140eb15f9b984bb8277c9f4bab1ed83435edc09afa553f075ef323f103
+    controlPlane: false
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "e4:5f:01:ec:16:9c"
+        dhcp: false
+        addresses:
+          - "192.168.10.37/24"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "192.168.10.1"
+        mtu: 1500
+  - hostname: "blade8"
+    ipAddress: "192.168.10.38"
+    installDisk: "/dev/disk/by-id/nvme-WD_Blue_SN570_500GB_220628800737"
+    machineSpec:
+      secureboot: false
+    talosImageURL: factory.talos.dev/installer/d62d27140eb15f9b984bb8277c9f4bab1ed83435edc09afa553f075ef323f103
+    controlPlane: false
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "e4:5f:01:ec:16:5a"
+        dhcp: false
+        addresses:
+          - "192.168.10.38/24"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "192.168.10.1"
+        mtu: 1500
+
+# Global patches
+patches:
+  - "@./patches/global/machine-files.yaml"
+  - "@./patches/global/machine-kubelet.yaml"
+  - "@./patches/global/machine-network.yaml"
+  - "@./patches/global/machine-sysctls.yaml"
+  - "@./patches/global/machine-time.yaml"
+
+# Controller patches
+controlPlane:
+  patches:
+    - "@./patches/controller/admission-controller-patch.yaml"
+    - "@./patches/controller/cluster.yaml"
+
