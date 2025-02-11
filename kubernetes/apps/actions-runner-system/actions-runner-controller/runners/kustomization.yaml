@@ -1,0 +1,8 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+#  - ./container-runner.yaml
+  - ./home-ops-amd64-runner.yaml
+#  - ./home-ops-runner.yaml
