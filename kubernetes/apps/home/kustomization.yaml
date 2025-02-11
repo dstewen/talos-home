@@ -6,8 +6,6 @@ namespace: home
 components:
   - ../../flux/components/common
 resources:
-  # Pre Flux-Kustomizations
-  - namespace.yaml
   # Flux-Kustomizations
 #  - ./audiobookshelf/ks.yaml
 #  - ./esphome/ks.yaml
