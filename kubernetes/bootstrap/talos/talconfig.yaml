@@ -33,12 +33,19 @@ nodes:
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
+          hardwareAddr: "58:47:ca:77:cf:38"
+        ignore: true
+        # Intel VPRO
+      - deviceSelector:
+          hardwareAddr: "58:47:ca:77:cf:39"
+        ignore: true
+      - deviceSelector:
           hardwareAddr: "58:47:ca:77:cf:36"
         dhcp: false
         addresses:
           - "192.168.10.51/24"
         routes:
-          - network: "0.0.0.0/0"
+          - network: 0.0.0.0/0
             gateway: "192.168.10.1"
         mtu: 1500
         vip:
@@ -60,12 +67,19 @@ nodes:
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
+          hardwareAddr: "58:47:ca:78:f1:34"
+        ignore: true
+        # Intel VPRO
+      - deviceSelector:
+          hardwareAddr: "58:47:ca:78:f1:35"
+        ignore: true
+      - deviceSelector:
           hardwareAddr: "58:47:ca:78:f1:32"
         dhcp: false
         addresses:
           - "192.168.10.52/24"
         routes:
-          - network: "0.0.0.0/0"
+          - network: 0.0.0.0/0
             gateway: "192.168.10.1"
         mtu: 1500
         vip:
@@ -87,12 +101,19 @@ nodes:
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
+          hardwareAddr: "58:47:ca:78:f8:4c"
+        ignore: true
+        # Intel VPRO
+      - deviceSelector:
+          hardwareAddr: "58:47:ca:78:f8:4d"
+        ignore: true
+      - deviceSelector:
           hardwareAddr: "58:47:ca:78:f8:4a"
         dhcp: false
         addresses:
           - "192.168.10.53/24"
         routes:
-          - network: "0.0.0.0/0"
+          - network: 0.0.0.0/0
             gateway: "192.168.10.1"
         mtu: 1500
         vip:
