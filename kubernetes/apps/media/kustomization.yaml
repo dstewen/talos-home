@@ -1,0 +1,27 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: media
+components:
+  - ../../flux/components/common
+resources:
+  # Flux-Kustomizations
+#  - _pvc
+#  - ./arr-misc/ks.yaml
+#  - ./bazarr/ks.yaml
+#  - ./calibre/ks.yaml
+#  - ./calibre-web/ks.yaml
+  - ./immich/ks.yaml
+#  - ./overseerr/ks.yaml
+  - ./paperless/ks.yaml
+  - ./plex/ks.yaml
+#  - ./prowlarr/ks.yaml
+#  - ./qbittorrent/ks.yaml
+#  - ./radarr/ks.yaml
+#  - ./readarr/ks.yaml
+#  - ./readarr-audiobooks/ks.yaml
+#  - ./sabnzbd/ks.yaml
+#  - ./sonarr/ks.yaml
+#  - ./tautulli/ks.yaml
+#  - ./tdarr/ks.yaml

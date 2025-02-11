@@ -1,0 +1,163 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app tdarr
+
+spec:
+
+  interval: 15m
+
+  chart:
+    spec:
+      chart: app-template
+      version: 3.6.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+
+  maxHistory: 2
+
+  install:
+    remediation:
+      retries: 3
+
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+
+  uninstall:
+    keepHistory: false
+
+  values:
+    defaultPodOptions:
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 100
+        fsGroupChangePolicy: "OnRootMismatch"
+        supplementalGroups:
+          - 44 # video
+          - 125 # render
+          - 105 # render
+          - 568
+      nodeSelector:
+        intel.feature.node.kubernetes.io/gpu: "true"
+
+    controllers:
+      tdarr:
+        containers:
+          app:
+            image:
+              repository: ghcr.io/haveagitgat/tdarr
+              tag: 2.32.01
+            env:
+              TZ: "${TIMEZONE}"
+            resources:
+              requests:
+                memory: 1.5Gi
+
+          node:
+            image:
+              repository: ghcr.io/haveagitgat/tdarr_node
+              tag: 2.32.01
+              pullPolicy: IfNotPresent
+            env:
+              - name: nodeID
+                valueFrom:
+                  fieldRef:
+                    fieldPath: spec.nodeName
+              - name: serverIP
+                value: localhost
+              - name: serverPort
+                value: 8266
+            resources:
+              requests:
+                memory: 1Gi
+                cpu: 1000m
+                gpu.intel.com/i915: 1
+              limits:
+                memory: 2Gi
+                gpu.intel.com/i915: 1
+    service:
+      app:
+        controller: tdarr
+        type: LoadBalancer
+        ports:
+          http:
+            port: 8265
+          server:
+            enabled: true
+            protocol: TCP
+            port: 8266
+
+    ingress:
+      app:
+        className: internal
+        hosts:
+          - host: &hostName "tdarr.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - hosts:
+              - *hostName
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: tdarr-config
+        advancedMounts:
+          tdarr:
+            app:
+              - path: /app/configs
+                subPath: config
+              - path: /app/server
+                subPath: server
+
+      cache:
+        existingClaim: tdarr-cache
+        globalMounts:
+          - path: /cache
+
+#      media:
+#        enabled: true
+#        existingClaim: nfs-media
+
+      movies:
+        type: nfs
+        server: 192.168.10.15
+        path: /volume2/piNFS01/flux-cluster/plex/media/Movies
+        globalMounts:
+          - path: /mnt/movies
+
+      tv:
+        type: nfs
+        server: 192.168.10.15
+        path: "/volume2/piNFS01/flux-cluster/plex/media/TV Shows"
+        globalMounts:
+          - path: /mnt/tv
+
+      other-videos:
+        type: nfs
+        server: 192.168.10.15
+        path: "/volume2/piNFS01/flux-cluster/plex/media/Other Videos"
+        globalMounts:
+          - path: /mnt/other-videos
+
+#      backups:
+#        enabled: true
+#        type: custom
+#        volumeSpec:
+#          nfs:
+#            server: "${QNAP_ADDR}"
+#            path: /plexbackups/backups/tdarr
+#        globalMounts:
+#          - path: /app/server/Tdarr/Backups
+#            readOnly: false
