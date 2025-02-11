@@ -1,0 +1,108 @@
+---
+version: 0.14
+mqtt:
+  host: 192.168.10.228
+  topic_prefix: frigate
+  port: 1883
+  user: "{FRIGATE_MQTT_USERNAME}"
+  password: "{FRIGATE_MQTT_PASSWORD}"
+
+ffmpeg:
+  global_args: ["-hide_banner", "-loglevel", "warning"]
+  hwaccel_args: preset-vaapi
+
+detectors:
+  coral:
+    type: edgetpu
+    device: pci
+#detectors:
+#  cpu1:
+#    type: cpu
+#    num_threads: 3
+
+audio:
+  enabled: true
+  # https://github.com/blakeblackshear/frigate/blob/dev/audio-labelmap.txt
+  listen:
+    - fire_alarm
+    - speech
+    - laughter
+    - crying
+    - child_singing
+    - gasp
+    - cough
+    - sneeze
+    - hiccup
+    - wheeze
+    - sniff
+    - gargling
+    - children_playing
+
+record:
+  enabled: true
+
+snapshots:
+  enabled: true
+  timestamp: false
+  bounding_box: true
+  retain:
+    default: 20
+
+go2rtc:
+  streams:
+    phone_rtsp:
+      - rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@192.168.1.13:8554/live
+    phone_rtsp_sub:
+      - rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@192.168.1.13:8554/live
+#    office:
+#      - rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@10.1.4.32:554/cam/realmonitor?channel=1&subtype=0&authbasic=64
+#    office_sub:
+#      - rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@10.1.4.32:554/cam/realmonitor?channel=1&subtype=1&authbasic=64
+
+cameras:
+  phone_rtsp:
+    ffmpeg:
+      inputs:
+        - path: rtsp://127.0.0.1:8554/phone_rtsp
+          input_args: preset-rtsp-restream
+          roles:
+            - record
+        - path: rtsp://127.0.0.1:8554/phone_rtsp_sub
+          input_args: preset-rtsp-restream
+          roles:
+            - audio
+            - detect
+      output_args:
+        record: preset-record-generic-audio-copy
+    live:
+      stream_name: phone_rtsp
+    detect:
+      width: 640
+      height: 480
+      fps: 10
+
+#  office:
+#    ffmpeg:
+#      inputs:
+#        - path: rtsp://127.0.0.1:8554/office
+#          input_args: preset-rtsp-restream
+#          roles:
+#            - record
+#        - path: rtsp://127.0.0.1:8554/office_sub
+#          input_args: preset-rtsp-restream
+#          roles:
+#            - audio
+#            - detect
+#      output_args:
+#        record: preset-record-generic-audio-copy
+#    live:
+#      stream_name: office
+#    detect:
+#      width: 640
+#      height: 480
+#      fps: 10
+#    onvif:
+#      host: 10.1.4.32
+#      port: 80
+#      user: '{FRIGATE_RTSP_USER}'
+#      password: '{FRIGATE_RTSP_PASSWORD}'

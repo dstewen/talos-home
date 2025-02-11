@@ -1,0 +1,144 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app node-red
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.6.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  uninstall:
+    keepHistory: false
+  dependsOn:
+    - name: local-path-provisioner
+      namespace: storage
+    - name: volsync
+      namespace: volsync
+  values:
+    defaultPodOptions:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - arm64
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 50
+            preference:
+              matchExpressions:
+              - key: node-role.kubernetes.io/worker
+                operator: In
+                values:
+                - worker
+    controllers:
+      node-red:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: docker.io/nodered/node-red
+              tag: 4.0.8@sha256:94926616c16e016e2468c2c83a8d9040ffdef1999e54a2b36e54986d37de2f7f
+            env:
+              TZ: ${TIMEZONE}
+              NODE_RED_ENABLE_PROJECTS: "true"
+              NODE_RED_ENABLE_SAFE_MODE: "false"
+#              NODE_RED_OAUTH_ISSUER_URL: https://id.${SECRET_DOMAIN}/application/o/node-red/
+#              NODE_RED_OAUTH_AUTH_URL: https://id.${SECRET_DOMAIN}/application/o/authorize/
+#              NODE_RED_OAUTH_CALLBACK_URL: https://nr.${SECRET_DOMAIN}/auth/strategy/callback/
+#              NODE_RED_OAUTH_TOKEN_URL: https://id.${SECRET_DOMAIN}/application/o/token/
+#              NODE_RED_OAUTH_USER_URL: https://id.${SECRET_DOMAIN}/application/o/userinfo/
+            envFrom:
+              - secretRef:
+                  name: node-red-secret
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+            resources:
+              requests:
+                cpu: 10m
+                memory: 64M
+              limits:
+                memory: 128M
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop:
+                  - ALL
+        pod:
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            runAsNonRoot: true
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
+    ingress:
+      app:
+        enabled: true
+        className: internal
+        annotations:
+          hajimari.io/icon: cib:node-red
+          hajimari.io/group: Home
+          hajimari.io/appName: node-red
+          hajimari.io/url: https://nr.${SECRET_DOMAIN}
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Home
+          gethomepage.dev/name: node-red
+          gethomepage.dev/icon: si-nodered
+          gethomepage.dev/href: https://nr.${SECRET_DOMAIN}
+#          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+        hosts:
+          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+            paths: &paths
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+          - host: &customHost nr.${SECRET_DOMAIN}
+            paths: *paths
+        tls:
+          - hosts:
+              - *host
+              - *customHost
+    persistence:
+      data:
+        enabled: true
+        existingClaim: node-red
+        globalMounts:
+          - path: /data
+#      settings:
+#        type: configMap
+#        name: node-red-configmap
+#        globalMounts:
+#          - path: /data/settings.js
+#            subPath: settings.js
+#            readOnly: false
+      tmp:
+        type: emptyDir
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: 1880

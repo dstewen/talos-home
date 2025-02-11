@@ -1,0 +1,15 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/volsync.backube/replicationdestination_v1alpha1.json
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationDestination
+metadata:
+  name: node-red-dest
+  namespace: home
+spec:
+  trigger:
+    manual: restore-once
+  restic:
+    repository: node-red-restic-secret
+    copyMethod: Direct
+    destinationPVC: node-red
+    storageClassName: local-hostpath
