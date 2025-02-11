@@ -1,0 +1,89 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: pve-exporter
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.6.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  dependsOn:
+    - name: kube-prometheus-stack
+      namespace: monitoring
+  values:
+    defaultPodOptions:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - arm64
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 50
+            preference:
+              matchExpressions:
+              - key: node-role.kubernetes.io/worker
+                operator: In
+                values:
+                - worker
+    controllers:
+      pve-exporter:
+        containers:
+          app:
+            image:
+              repository: prompve/prometheus-pve-exporter
+              tag: 3.5.1
+            envFrom:
+              - secretRef:
+                  name: pve-exporter-secret
+            resources:
+              requests:
+                cpu: 50m
+                memory: 32M
+              limits:
+                memory: 128M
+        pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+    service:
+      app:
+        controller: pve-exporter
+        ports:
+          http:
+            port: 9221
+    serviceMonitor:
+      app:
+        enabled: true
+        endpoints:
+          - path: /pve
+            params:
+              cluster:
+                - "1"
+              module:
+                - default
+              node:
+                - "1"
+              target:
+                - 192.168.10.87
+            port: http
+            scheme: http
+        serviceName: pve-exporter
