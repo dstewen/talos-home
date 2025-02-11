@@ -3,14 +3,37 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  - ./1password-charts.yaml
+  - ./actions-runner-controller.yaml
+  - ./authentik.yaml
+  - ./backube.yaml
   - ./bjw-s.yaml
   - ./cilium.yaml
+  - ./cloudnative-pg.yaml
   - ./controlplaneio.yaml
   - ./coredns.yaml
+  - ./deliveryhero-charts.yaml
+  - ./democratic-csi.yaml
+  - ./descheduler.yaml
   - ./external-dns.yaml
+  - ./external-secrets.yaml
+  - ./go-skynet.yaml
+  - ./grafana.yaml
   - ./ingress-nginx.yaml
+  - ./intel.yaml
+  - ./itzg.yaml
   - ./jetstack.yaml
   - ./k8s-gateway.yaml
+  - ./k8sgpt.yaml
+  - ./kubernetes-sigs-descheduler-charts.yaml
+  - ./kubernetes-sigs-nfd.yaml
   - ./metrics-server.yaml
+  - ./ollama.yaml
+  - ./open-webui.yaml
+  - ./openebs.yaml
+  - ./piraeus.yaml
+  - ./postfinance.yaml
+  - ./prometheus-community.yaml
+  - ./rook-ceph.yaml
   - ./spegel.yaml
   - ./stakater.yaml
