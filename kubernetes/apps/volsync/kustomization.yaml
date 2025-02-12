@@ -5,6 +5,6 @@ kind: Kustomization
 namespace: volsync
 components:
   - ../../flux/components/common
-resources:
+resources: []
   # Flux-Kustomizations
-  - ./volsync/ks.yaml
+#  - ./volsync/ks.yaml
