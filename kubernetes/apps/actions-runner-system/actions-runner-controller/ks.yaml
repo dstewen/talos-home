@@ -8,6 +8,7 @@ metadata:
 spec:
   dependsOn:
     - name: external-secrets-stores
+      namespace: external-secrets
   targetNamespace: *namespace
   commonMetadata:
     labels:
@@ -32,6 +33,7 @@ metadata:
 spec:
   dependsOn:
     - name: actions-runner-controller
+      namespace: actions-runner-system
   targetNamespace: *namespace
   commonMetadata:
     labels:
