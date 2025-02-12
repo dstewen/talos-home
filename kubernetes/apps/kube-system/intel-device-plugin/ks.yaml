@@ -34,7 +34,9 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: intel-device-plugin-operator
+      namespace: kube-system
     - name: node-feature-discovery-rules
+      namespace: kube-system
   path: ./kubernetes/apps/kube-system/intel-device-plugin/gpu
   prune: true
   sourceRef:
