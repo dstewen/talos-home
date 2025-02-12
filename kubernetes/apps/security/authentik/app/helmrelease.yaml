@@ -1,0 +1,129 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: authentik
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: authentik
+      version: 2024.12.3
+      sourceRef:
+        kind: HelmRepository
+        name: authentik
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  dependsOn:
+    - name: smtp-relay
+      namespace: home
+  values:
+    global:
+      podAnnotations:
+        secret.reloader.stakater.com/reload: &secret authentik-secret
+      deploymentStrategy:
+        type: RollingUpdate
+      envFrom:
+        - secretRef:
+            name: *secret
+      addPrometheusAnnotations: false
+#      nodeSelector:
+#        node-role.kubernetes.io/worker: worker
+#      affinity:
+#        nodeAffinity:
+#          requiredDuringSchedulingIgnoredDuringExecution:
+#            nodeSelectorTerms:
+#            - matchExpressions:
+#              - key: node-role.kubernetes.io/worker
+#                operator: In
+#                values:
+#                - worker
+#          preferredDuringSchedulingIgnoredDuringExecution:
+#          - weight: 50
+#            preference:
+#              matchExpressions:
+#              - key: kubernetes.io/arch
+#                operator: In
+#                values:
+#                - arm64
+
+    authentik:
+      log_level: info
+      avatars: "gravatar,initials"
+      email:
+        host: smtp-relay.home.svc.cluster.local
+        port: 2525
+        from: "Access <dstewen@internode.on.net>"
+      error_reporting:
+        enable: false
+        send_pii: false
+      redis:
+        host: dragonfly.database.svc.cluster.local
+        db: 4
+    prometheus:
+      rules:
+        enabled: true
+    server:
+      autoscaling:
+        enabled: true
+        minReplicas: 2
+        maxReplicas: 2
+      initContainers:
+        - name: init-db
+          image: ghcr.io/onedr0p/postgres-init:16.3@sha256:9c136223fb4e05b0ca24e2350c2dc45843110d0e1d09615c52c9a037628c09fa
+          envFrom:
+            - secretRef:
+                name: *secret
+      metrics:
+        enabled: true
+        serviceMonitor:
+          enabled: true
+      resources:
+        requests:
+          cpu: 100m
+          memory: 200M
+        limits:
+          memory: 700M
+      ingress:
+        enabled: true
+        ingressClassName: internal
+        annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/icon: simple-icons:webauthn
+          hajimari.io/group: Security
+          hajimari.io/appName: Authentik
+          hajimari.io/url: "https://id.${SECRET_DOMAIN}"
+#          gethomepage.dev/enabled: "true"
+#          gethomepage.dev/icon: authentik.png
+#          gethomepage.dev/name: Authentik
+#          gethomepage.dev/group: Infrastructure
+#          gethomepage.dev/description: OIDC User Management
+#          gethomepage.dev/widget.type: authentik
+#          gethomepage.dev/widget.url: http://authentik-server.security.svc.cluster.local
+#          gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_AUTHENTIK_TOKEN}}"
+          external-dns.alpha.kubernetes.io/target: "internal.${SECRET_DOMAIN}"
+        hosts:
+          - "id.${SECRET_DOMAIN}"
+        https: false
+    worker:
+      autoscaling:
+        enabled: true
+        minReplicas: 2
+        maxReplicas: 2
+      resources:
+        requests:
+          cpu: 100m
+          memory: 200M
+        limits:
+          memory: 700M
+      metrics:
+        serviceMonitor:
+          enabled: true
