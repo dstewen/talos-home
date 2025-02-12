@@ -7,4 +7,3 @@ resources:
   - ./helmrelease.yaml
 #  - ./volume.yaml
 #  - ./volsync_nas.yaml
-  - ../../../../templates/volsync
