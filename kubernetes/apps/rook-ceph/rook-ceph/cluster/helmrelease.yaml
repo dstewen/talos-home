@@ -116,10 +116,10 @@ spec:
 #              - name: /dev/disk/by-id/nvme-INTEL_SSDPEKKW512G8_BTHH81000E09512D
           - name: ms1
             devices:
-              - name: /dev/nvme1n1
+              - name: /dev/nvme0n1
           - name: ms2
             devices:
-              - name: /dev/nvme1n1
+              - name: /dev/nvme0n1
           - name: ms3
             devices:
               - name: /dev/nvme0n1
