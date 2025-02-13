@@ -4,13 +4,14 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app lldap
+  namespace: &namespace security
 spec:
   dependsOn:
     - name: cloudnative-pg-cluster
       namespace: database
     - name: external-secrets-stores
       namespace: external-secrets
-  targetNamespace: security
+  targetNamespace: *namespace
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
