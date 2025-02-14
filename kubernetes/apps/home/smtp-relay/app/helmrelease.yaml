@@ -27,7 +27,7 @@ spec:
   values:
     defaultPodOptions:
       affinity:
-        nodeAffinity:
+        nodeAffinity:     ## Set node affinity to amd64 as this container is only amd64
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
             - matchExpressions:
