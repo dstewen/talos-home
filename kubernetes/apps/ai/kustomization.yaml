@@ -1,0 +1,13 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: ai
+resources:
+  # Flux-Kustomizations
+#  - ./boinc/ks.yaml
+  - ./localai/ks.yaml
+  - ./k8sgpt/ks.yaml
+  - ./ollama/ks.yaml
+  - ./open-webui/ks.yaml
+#  - ./stable-diffusion/ks.yaml
