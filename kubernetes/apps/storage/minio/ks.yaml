@@ -11,9 +11,9 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: ingress-nginx-internal
+    - name: internal-ingress-nginx
       namespace: network
-    - name: ingress-nginx-external
+    - name: external-ingress-nginx
       namespace: network
   path: ./kubernetes/apps/storage/minio/app
   prune: true
