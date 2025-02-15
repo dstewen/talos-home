@@ -31,8 +31,8 @@ spec:
 #      namespace: volsync
   values:
     defaultPodOptions:
-      nodeSelector:
-        kubernetes.io/arch: amd64
+#      nodeSelector:
+#        kubernetes.io/arch: amd64
       securityContext:
         runAsNonRoot: true
         runAsUser: 1000
@@ -42,24 +42,17 @@ spec:
         seccompProfile: { type: RuntimeDefault }
     controllers:
       home-assistant:
-#        pod:
-#          affinity:
-#            nodeAffinity:
-#              requiredDuringSchedulingIgnoredDuringExecution:
-#                nodeSelectorTerms:
-#                - matchExpressions:
-#                  - key: node-role.kubernetes.io/worker
-#                    operator: In
-#                    values:
-#                    - worker
-#              preferredDuringSchedulingIgnoredDuringExecution:
-#              - weight: 1
-#                preference:
-#                  matchExpressions:
-#                  - key: kubernetes.io/arch
-#                    operator: In
-#                    values:
-#                    - arm64
+        pod:
+          affinity:
+            nodeAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 1
+                preference:
+                  matchExpressions:
+                  - key: kubernetes.io/arch
+                    operator: In
+                    values:
+                    - arm64
 
 #          annotations:
 #            k8s.v1.cni.cncf.io/networks: |
