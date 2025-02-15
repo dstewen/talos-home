@@ -52,7 +52,7 @@ spec:
               SEARXNG_BASE_URL: https://search.${SECRET_DOMAIN}
               SEARXNG_URL: https://search.${SECRET_DOMAIN}
               SEARXNG_PORT: &httpPort 8080
-              SEARXNG_REDIS_URL: redis://dragonfly.databases.svc.cluster.local:6379?/5
+#              SEARXNG_REDIS_URL: redis://dragonfly.databases.svc.cluster.local:6379?/5
             envFrom:
               - secretRef:
                   name: searxng-secret
