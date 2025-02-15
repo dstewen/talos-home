@@ -1,0 +1,58 @@
+---
+# Copied from Lildrunksmurf
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: home-assistantpi4
+  annotations:
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/icon: home-assistant.png
+    gethomepage.dev/name: Home-Assistant-Pi4
+    gethomepage.dev/group: Home
+    gethomepage.dev/href: https://home-assistantpi4.${SECRET_DOMAIN}
+    gethomepage.dev/widget.type: homeassistant
+    gethomepage.dev/widget.url: http://192.168.10.22:8123
+    gethomepage.dev/widget.key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIyYTYwNGJhNTEyZjM0YzYwYWM4YWFjMmZkNDNkNWY4OSIsImlhdCI6MTcyOTkyNzgxMSwiZXhwIjoyMDQ1Mjg3ODExfQ.ZG4hgS9ekqTr36Un_AqBtfp0NqSj8U5GqQPo9sijXTo"
+    hajimari.io/enable: "true"
+    hajimari.io/icon: mdi:home-assistant
+    hajimari.io/group: Home
+    hajimari.io/url: https://home-assistantpi4.${SECRET_DOMAIN}
+#    external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
+spec:
+  ingressClassName: internal
+  rules:
+    - host: &host home-assistantpi4.${SECRET_DOMAIN}
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: home-assistantpi4
+                port:
+                  number: 8123
+  tls:
+    - hosts:
+        - *host
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: home-assistantpi4
+subsets:
+  - addresses:
+      - ip: 192.168.10.22
+    ports:
+      - name: http
+        port: 8123
+        protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: home-assistantpi4
+spec:
+  ports:
+    - name: http
+      port: 8123
+  type: ClusterIP

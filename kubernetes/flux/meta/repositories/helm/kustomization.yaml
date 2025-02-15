@@ -19,6 +19,7 @@ resources:
   - ./external-secrets.yaml
   - ./go-skynet.yaml
   - ./grafana.yaml
+  - ./hajimari.yaml
   - ./ingress-nginx.yaml
   - ./intel.yaml
   - ./itzg.yaml

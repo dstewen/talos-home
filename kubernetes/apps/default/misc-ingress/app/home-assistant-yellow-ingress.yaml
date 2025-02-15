@@ -1,0 +1,58 @@
+---
+# Copied from Lildrunksmurf
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: home-assistant-yellow-ingress
+  annotations:
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/icon: home-assistant.png
+    gethomepage.dev/name: Home-Assistant-Yellow
+    gethomepage.dev/group: Home
+    gethomepage.dev/href: https://home-assistant-yellow.${SECRET_DOMAIN}
+    gethomepage.dev/widget.type: homeassistant
+    gethomepage.dev/widget.url: http://192.168.10.84:8123
+    gethomepage.dev/widget.key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI4YzEzOTYyZWUxYzI0ZGQzOWY2ZDkwYWY5ZmMwYTI5MyIsImlhdCI6MTcyOTkyNzcyMywiZXhwIjoyMDQ1Mjg3NzIzfQ.xBI53s9WCgCK4a7IuZ7pJibYJjjC9t0hlpmtG7rHkLQ"
+    hajimari.io/enable: "true"
+    hajimari.io/icon: mdi:home-assistant
+    hajimari.io/group: Home
+    hajimari.io/url: https://home-assistant-yellow.${SECRET_DOMAIN}
+#    external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
+spec:
+  ingressClassName: internal
+  rules:
+    - host: &host home-assistant-yellow.${SECRET_DOMAIN}
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: home-assistant-yellow
+                port:
+                  number: 8123
+  tls:
+    - hosts:
+        - *host
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: home-assistant-yellow
+subsets:
+  - addresses:
+      - ip: 192.168.10.84
+    ports:
+      - name: http
+        port: 8123
+        protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: home-assistant-yellow
+spec:
+  ports:
+    - name: http
+      port: 8123
+  type: ClusterIP
