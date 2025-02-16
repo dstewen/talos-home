@@ -39,17 +39,38 @@ nodes:
       - deviceSelector:
           hardwareAddr: "58:47:ca:77:cf:39"
         ignore: true
-      - deviceSelector:
-          hardwareAddr: "58:47:ca:77:cf:36"
+        #bond0
+      - interface: bond0
+        bond:
+          mode: active-backup
+          deviceSelectors:
+            - hardwareAddr: "58:47:ca:77:cf:*"
+              driver: i40e
         dhcp: false
         addresses:
           - "192.168.10.51/24"
         routes:
           - network: 0.0.0.0/0
             gateway: "192.168.10.1"
+            metric: 1
         mtu: 1500
         vip:
           ip: "192.168.10.254"
+        vlans:
+          - vlanId: 40
+            mtu: 1500
+            addresses: [ "172.16.20.51/24" ]
+            routes:
+              - network: "172.16.20.0/24"
+                gateway: "172.16.20.1"
+                metric: 4097
+          - vlanId: 30
+            mtu: 1500
+            addresses: [ "192.168.30.51/24" ]
+            routes:
+              - network: "192.168.30.0/24"
+                gateway: "192.168.30.1"
+                metric: 4096
     extensionServices:
       - name: nut-client
         configFiles:
@@ -73,17 +94,37 @@ nodes:
       - deviceSelector:
           hardwareAddr: "58:47:ca:78:f1:35"
         ignore: true
-      - deviceSelector:
-          hardwareAddr: "58:47:ca:78:f1:32"
+        #bond0
+      - interface: bond0
+        bond:
+          mode: active-backup
+          deviceSelectors:
+            - hardwareAddr: "58:47:ca:78:f1:*"
         dhcp: false
         addresses:
           - "192.168.10.52/24"
         routes:
           - network: 0.0.0.0/0
             gateway: "192.168.10.1"
+            metric: 1
         mtu: 1500
         vip:
           ip: "192.168.10.254"
+        vlans:
+          - vlanId: 40
+            mtu: 1500
+            addresses: [ "172.16.20.52/24" ]
+            routes:
+              - network: "172.16.20.0/24"
+                gateway: "172.16.20.1"
+                metric: 4097
+          - vlanId: 30
+            mtu: 1500
+            addresses: [ "192.168.30.52/24" ]
+            routes:
+              - network: "192.168.30.0/24"
+                gateway: "192.168.30.1"
+                metric: 4096
     extensionServices:
       - name: nut-client
         configFiles:
@@ -91,6 +132,7 @@ nodes:
               MONITOR ups@192.168.10.23 1 upsmon_local mypassword secondary
               SHUTDOWNCMD "/sbin/poweroff"
             mountPath: /usr/local/etc/nut/upsmon.conf
+
   - hostname: "ms3"
     ipAddress: "192.168.10.53"
     installDiskSelector:
@@ -107,17 +149,37 @@ nodes:
       - deviceSelector:
           hardwareAddr: "58:47:ca:78:f8:4d"
         ignore: true
-      - deviceSelector:
-          hardwareAddr: "58:47:ca:78:f8:4a"
+        #bond0
+      - interface: bond0
+        bond:
+          mode: active-backup
+          deviceSelectors:
+            - hardwareAddr: "58:47:ca:78:f8:*"
         dhcp: false
         addresses:
           - "192.168.10.53/24"
         routes:
           - network: 0.0.0.0/0
             gateway: "192.168.10.1"
+            metric: 1
         mtu: 1500
         vip:
           ip: "192.168.10.254"
+        vlans:
+          - vlanId: 40
+            mtu: 1500
+            addresses: [ "172.16.20.53/24" ]
+            routes:
+              - network: "172.16.20.0/24"
+                gateway: "172.16.20.1"
+                metric: 4097
+          - vlanId: 30
+            mtu: 1500
+            addresses: [ "192.168.30.53/24" ]
+            routes:
+              - network: "192.168.30.0/24"
+                gateway: "192.168.30.1"
+                metric: 4096
     extensionServices:
       - name: nut-client
         configFiles:
@@ -125,6 +187,7 @@ nodes:
               MONITOR ups@192.168.10.23 1 upsmon_local mypassword secondary
               SHUTDOWNCMD "/sbin/poweroff"
             mountPath: /usr/local/etc/nut/upsmon.conf
+
   - hostname: "blade5"
     ipAddress: "192.168.10.35"
     installDisk: "/dev/disk/by-id/nvme-WD_Blue_SN570_500GB_220628800811"
@@ -133,15 +196,44 @@ nodes:
     talosImageURL: factory.talos.dev/installer/d62d27140eb15f9b984bb8277c9f4bab1ed83435edc09afa553f075ef323f103
     controlPlane: false
     networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "e4:5f:01:ec:16:b4"
+        #bond0
+      - interface: bond0
+        bond:
+          mode: active-backup
+          deviceSelectors:
+            - hardwareAddr: "e4:5f:01:ec:16:b4"
         dhcp: false
         addresses:
           - "192.168.10.35/24"
         routes:
-          - network: "0.0.0.0/0"
+          - network: 0.0.0.0/0
             gateway: "192.168.10.1"
+            metric: 1
         mtu: 1500
+        vlans:
+          - vlanId: 40
+            mtu: 1500
+            addresses: [ "172.16.20.35/24" ]
+            routes:
+              - network: "172.16.20.0/24"
+                gateway: "172.16.20.1"
+                metric: 4097
+          - vlanId: 30
+            mtu: 1500
+            addresses: [ "192.168.30.35/24" ]
+            routes:
+              - network: "192.168.30.0/24"
+                gateway: "192.168.30.1"
+                metric: 4096
+
+    extensionServices:
+      - name: nut-client
+        configFiles:
+          - content: |-
+              MONITOR ups@192.168.10.23 1 upsmon_local mypassword secondary
+              SHUTDOWNCMD "/sbin/poweroff"
+            mountPath: /usr/local/etc/nut/upsmon.conf
+
   - hostname: "blade6"
     ipAddress: "192.168.10.36"
     installDisk: "/dev/disk/by-id/nvme-WD_Blue_SN570_500GB_220628800731"
@@ -150,15 +242,44 @@ nodes:
     talosImageURL: factory.talos.dev/installer/d62d27140eb15f9b984bb8277c9f4bab1ed83435edc09afa553f075ef323f103
     controlPlane: false
     networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "e4:5f:01:ec:16:a5"
+        #bond0
+      - interface: bond0
+        bond:
+          mode: active-backup
+          deviceSelectors:
+            - hardwareAddr: "e4:5f:01:ec:16:a5"
         dhcp: false
         addresses:
           - "192.168.10.36/24"
         routes:
-          - network: "0.0.0.0/0"
+          - network: 0.0.0.0/0
             gateway: "192.168.10.1"
+            metric: 1
         mtu: 1500
+        vlans:
+          - vlanId: 40
+            mtu: 1500
+            addresses: [ "172.16.20.36/24" ]
+            routes:
+              - network: "172.16.20.0/24"
+                gateway: "172.16.20.1"
+                metric: 4097
+          - vlanId: 30
+            mtu: 1500
+            addresses: [ "192.168.30.36/24" ]
+            routes:
+              - network: "192.168.30.0/24"
+                gateway: "192.168.30.1"
+                metric: 4096
+
+    extensionServices:
+      - name: nut-client
+        configFiles:
+          - content: |-
+              MONITOR ups@192.168.10.23 1 upsmon_local mypassword secondary
+              SHUTDOWNCMD "/sbin/poweroff"
+            mountPath: /usr/local/etc/nut/upsmon.conf
+
 #  - hostname: "blade7"
 #    ipAddress: "192.168.10.37"
 #    installDisk: "/dev/disk/by-id/nvme-WD_Blue_SN570_500GB_220628800801"
@@ -167,15 +288,36 @@ nodes:
 #    talosImageURL: factory.talos.dev/installer/d62d27140eb15f9b984bb8277c9f4bab1ed83435edc09afa553f075ef323f103
 #    controlPlane: false
 #    networkInterfaces:
-#      - deviceSelector:
-#          hardwareAddr: "e4:5f:01:ec:16:9c"
+#        #bond0
+#      - interface: bond0
+#        bond:
+#          mode: active-backup
+#          deviceSelectors:
+#            - hardwareAddr: "e4:5f:01:ec:16:9c"
 #        dhcp: false
 #        addresses:
 #          - "192.168.10.37/24"
 #        routes:
-#          - network: "0.0.0.0/0"
+#          - network: 0.0.0.0/0
 #            gateway: "192.168.10.1"
+#            metric: 1
 #        mtu: 1500
+#        vlans:
+#          - vlanId: 40
+#            mtu: 1500
+#            addresses: [ "172.16.20.37/24" ]
+#            routes:
+#              - network: "172.16.20.0/24"
+#                gateway: "172.16.20.1"
+#                metric: 4097
+#          - vlanId: 30
+#            mtu: 1500
+#            addresses: [ "192.168.30.37/24" ]
+#            routes:
+#              - network: "192.168.30.0/24"
+#                gateway: "192.168.30.1"
+#                metric: 4096
+
   - hostname: "blade8"
     ipAddress: "192.168.10.38"
     installDisk: "/dev/disk/by-id/nvme-WD_Blue_SN570_500GB_220628800737"
@@ -184,15 +326,43 @@ nodes:
     talosImageURL: factory.talos.dev/installer/d62d27140eb15f9b984bb8277c9f4bab1ed83435edc09afa553f075ef323f103
     controlPlane: false
     networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "e4:5f:01:ec:16:5a"
+        #bond0
+      - interface: bond0
+        bond:
+          mode: active-backup
+          deviceSelectors:
+            - hardwareAddr: "e4:5f:01:ec:16:5a"
         dhcp: false
         addresses:
           - "192.168.10.38/24"
         routes:
-          - network: "0.0.0.0/0"
+          - network: 0.0.0.0/0
             gateway: "192.168.10.1"
+            metric: 1
         mtu: 1500
+        vlans:
+          - vlanId: 40
+            mtu: 1500
+            addresses: [ "172.16.20.38/24" ]
+            routes:
+              - network: "172.16.20.0/24"
+                gateway: "172.16.20.1"
+                metric: 4097
+          - vlanId: 30
+            mtu: 1500
+            addresses: [ "192.168.30.38/24" ]
+            routes:
+              - network: "192.168.30.0/24"
+                gateway: "192.168.30.1"
+                metric: 4096
+
+    extensionServices:
+      - name: nut-client
+        configFiles:
+          - content: |-
+              MONITOR ups@192.168.10.23 1 upsmon_local mypassword secondary
+              SHUTDOWNCMD "/sbin/poweroff"
+            mountPath: /usr/local/etc/nut/upsmon.conf
 
 # Global patches
 patches:
