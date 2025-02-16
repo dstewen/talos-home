@@ -3,11 +3,11 @@
 
 ### Talos Hosts 192.168.10.51 - 192.168.10.69
 
-| Name | Device           | CPU       | OS Disk             | Data Disk          | RAM  | OS            | Purpose      | IP Bond0 (I226-V + I226-LM) | Storage VLAN SubInterface on Bond0 | IP Bond0 (2 x X710)                                                                             |               | k3s worker    |
+| Name | Device           | CPU       | OS Disk             | Data Disk          | RAM  | OS             | Purpose      | IP Bond0 (I226-V + I226-LM) | Storage VLAN SubInterface on Bond0 | IP Bond0 (2 x X710)                                                                             |               | k3s worker    |
 | ---- | ---------------- | --------- | ------------------- | ------------------ | ---- | ------------- | ------------ | --------------------------- | ---------------------------------- | ----------------------------------------------------------------------------------------------- | ------------- | ------------- |
-| pve1 | Miniforums MS-01 | i9-13900H | Crucial CT500P1SSD8 | WD_BLACK SN770 2TB | 96GB | Proxmox 8.2.7 | Proxmox/Ceph | 192.168.10.87               | 192.168.12.25                      | vmbr1.10 192.168.10.25<br>enp2s0f0np0 (58:47:ca:77:cf:36)<br>enp2s0f1np1<br>(58:47:ca:77:cf:36) | 192.168.10.51 | 192.168.10.54 |
-| pve2 | Miniforums MS-01 | i9-13900H |                     | WD_BLACK SN770 2TB | 96GB |               | Proxmox/Ceph | 192.168.10.133              | 192.168.12.26                      | vmbr1.10 192.168.10.26                                                                          | 192.168.10.52 | 192.168.10.55 |
-| pve3 | Miniforums MS-01 | i9-13900H |                     | WD_BLACK SN770 2TB | 96GB |               | Proxmox/Ceph | 192.168.10.135              | 192.168.12.27                      | vmbr1.10 192.168.10.27                                                                          | 192.168.10.53 | 192.168.10.56 |
+| ms1  | Miniforums MS-01 | i9-13900H | Crucial CT500P1SSD8 | WD_BLACK SN770 2TB | 96GB | Talos (v1.9.3) | Controller   | 192.168.10.87               | 192.168.12.25                      | vmbr1.10 192.168.10.25<br>enp2s0f0np0 (58:47:ca:77:cf:36)<br>enp2s0f1np1<br>(58:47:ca:77:cf:36) | 192.168.10.51 | 192.168.10.54 |
+| ms2  | Miniforums MS-01 | i9-13900H | WD Blue SN570 500GB | WD_BLACK SN770 2TB | 96GB | Talos (v1.9.3) | Controller   | 192.168.10.133              | 192.168.12.26                      | vmbr1.10 192.168.10.26                                                                          | 192.168.10.52 | 192.168.10.55 |
+| ms3  | Miniforums MS-01 | i9-13900H | WD Blue SN570 500GB | WD_BLACK SN770 2TB | 96GB | Talos (v1.9.3) | Controller   | 192.168.10.135              | 192.168.12.27                      | vmbr1.10 192.168.10.27                                                                          | 192.168.10.53 | 192.168.10.56 |
 
 Total CPU: XX threads (workers)
 Total RAM: XXXGB (workers)
