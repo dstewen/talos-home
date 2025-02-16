@@ -51,19 +51,19 @@ CM4 Workers
 ### CM-Infra Cluster
 
 
-| Hostname | Model               | MAC | Serial | Role       | IP            | OS     | Firmware |
-| -------- | ------------------- | --- | ------ | ---------- | ------------- | ------ | -------- |
-| blade1   | CM4 8Gb eMMC (32Gb) |     |        | controller | 192.168.10.31 | Debian |          |
-| blade2   | CM4 8Gb eMMC (32Gb) |     |        | controller | 192.168.10.32 | Debian |          |
-| blade3   | CM4 8Gb eMMC (32Gb) |     |        | controller | 192.168.10.33 | Debian |          |
+| Hostname | Model               | MAC               | Serial | Role       | IP            | OS     | Firmware |
+| -------- | ------------------- | ----------------- | ------ | ---------- | ------------- | ------ | -------- |
+| blade1   | CM4 8Gb eMMC (32Gb) | e4:5f:01:ec:16:a2 |        | controller | 192.168.10.31 | Debian |          |
+| blade2   | CM4 8Gb eMMC (32Gb) | e4:5f:01:ec:16:54 |        | controller | 192.168.10.32 | Debian |          |
+| blade3   | CM4 8Gb eMMC (32Gb) | e4:5f:01:ec:16:66 |        | controller | 192.168.10.33 | Debian |          |
 
 ### CM-Infra Cluster Ingresses
 
 | Name                      | Purpose                                              | IP             |
 | ------------------------- | ---------------------------------------------------- | -------------- |
 | ingress_vip               | internal ingress load balancer                       | 192.168.10.249 |
-| gateway_vip               | DNS to cluster                                       | 192.168.10.248  |
-| tunnel_ingress_vip        | ingress for Cloudflare tunnels for external services | 192.168.10.247  |
+| gateway_vip               | DNS to cluster                                       | 192.168.10.248 |
+| tunnel_ingress_vip        | ingress for Cloudflare tunnels for external services | 192.168.10.247 |
 | bootstrap_controllers_vip | IP address of the Kube API                           | 192.168.10.253 |
 
 
@@ -71,11 +71,11 @@ CM4 Workers
 
 Pi4's
 
-| Hostname | Model               | MAC               | Serial (EMMC) | Serial (NVME) | Role   | IP            | OS          |
-| -------- | ------------------- | ----------------- | ------------- | ------------- | ------ | ------------- | ----------- |
-| pi4w1    | CM4 8Gb eMMC (32Gb) | dc:a6:32:b0:f8:81 | 48b8f0c0      |               | worker |               |             |
-| pi4w2    | CM4 8Gb eMMC (32Gb) |                   | 8807de1e      |               | worker |               |             |
-| pi4w3    | CM4 8Gb eMMC (32Gb) |                   | f7b0297e      |               | worker |               |             |
+| Hostname | Model               | MAC               | Serial   | Serial (NVME) | Role   | IP            | OS          |
+| -------- | ------------------- | ----------------- | ---------| ------------- | ------ | ------------- | ----------- |
+| pi4w1    | CM4 8Gb eMMC (32Gb) | dc:a6:32:b0:f8:81 | 48b8f0c0 |               | worker |               |             |
+| pi4w2    | CM4 8Gb eMMC (32Gb) |                   | 8807de1e |               | worker |               |             |
+| pi4w3    | CM4 8Gb eMMC (32Gb) |                   | f7b0297e |               | worker |               |             |
 
 
 
