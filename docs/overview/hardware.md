@@ -3,11 +3,11 @@
 
 ### Talos Hosts 192.168.10.51 - 192.168.10.69
 
-| Name | Device           | CPU       | OS Disk             | Data Disk          | RAM  | OS             | Purpose      | IP Bond0 (I226-V + I226-LM) | Storage VLAN SubInterface on Bond0 | IP Bond0 (2 x X710)                                                                             |               | k3s worker    |
-| ---- | ---------------- | --------- | ------------------- | ------------------ | ---- | ------------- | ------------ | --------------------------- | ---------------------------------- | ----------------------------------------------------------------------------------------------- | ------------- | ------------- |
-| ms1  | Miniforums MS-01 | i9-13900H | Crucial CT500P1SSD8 | WD_BLACK SN770 2TB | 96GB | Talos (v1.9.3) | Controller   | 192.168.10.87               | 192.168.12.25                      | vmbr1.10 192.168.10.25<br>enp2s0f0np0 (58:47:ca:77:cf:36)<br>enp2s0f1np1<br>(58:47:ca:77:cf:36) | 192.168.10.51 | 192.168.10.54 |
-| ms2  | Miniforums MS-01 | i9-13900H | WD Blue SN570 500GB | WD_BLACK SN770 2TB | 96GB | Talos (v1.9.3) | Controller   | 192.168.10.133              | 192.168.12.26                      | vmbr1.10 192.168.10.26                                                                          | 192.168.10.52 | 192.168.10.55 |
-| ms3  | Miniforums MS-01 | i9-13900H | WD Blue SN570 500GB | WD_BLACK SN770 2TB | 96GB | Talos (v1.9.3) | Controller   | 192.168.10.135              | 192.168.12.27                      | vmbr1.10 192.168.10.27                                                                          | 192.168.10.53 | 192.168.10.56 |
+| Name | Device           | CPU       | OS Disk             | Data Disk          | RAM  | OS             | Purpose    | IP vPro (I226-LM) | IP Bond0 (2 x X710)                                                      | IP (1 x X710) |
+| ---- | ---------------- | --------- | ------------------- | ------------------ | ---- | -------------- | ---------- | ----------------- | ------------------------------------------------------------------------ | ------------- |
+| pve1 | Miniforums MS-01 | i9-13900H | Crucial CT500P1SSD8 | WD_BLACK SN770 2TB | 96GB | Talos (v1.9.3) | Controller | 192.168.30.50     | enp2s0f0np0 (58:47:ca:77:cf:36)<br>enp2s0f1np1<br>(58:47:ca:77:cf:37)    | 192.168.10.51 |
+| pve2 | Miniforums MS-01 | i9-13900H | WD Blue SN570 500GB | WD_BLACK SN770 2TB | 96GB | Talos (v1.9.3) | Controller | 192.168.30.51     | enp2s0f0np0<br>(58:47:ca:78:f1:32)<br>enp2s0f1np1<br>(58:47:ca:78:f1:33) | 192.168.10.52 |
+| pve3 | Miniforums MS-01 | i9-13900H | WD Blue SN570 500GB | WD_BLACK SN770 2TB | 96GB | Talos (v1.9.3) | Controller | 192.168.30.52     | enp2s0f0np0<br>(58:47:ca:78:f8:4a)<br>enp2s0f1np1<br>(58:47:ca:78:f8:4b) | 192.168.10.53 |
 
 Total CPU: XX threads (workers)
 Total RAM: XXXGB (workers)
