@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: wyoming-services
+  name: &app wyoming-services
   namespace: &namespace home
 spec:
   targetNamespace: *namespace
