@@ -8,4 +8,5 @@ components:
 resources:
   - ./external/ks.yaml
   - ./internal/ks.yaml
+#  - ./multus/ks.yaml
   - ./openspeedtest/ks.yaml
