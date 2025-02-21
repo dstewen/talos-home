@@ -59,20 +59,20 @@ spec:
 #          replacement: s3400-48t6sp-snmp-exporter:9116
 #    nodeSelector:
 #      node-role.kubernetes.io/worker: worker
-#    affinity:
-#      nodeAffinity:
-#        requiredDuringSchedulingIgnoredDuringExecution:
-#          nodeSelectorTerms:
-#          - matchExpressions:
-#            - key: node-role.kubernetes.io/worker
-#              operator: In
-#              values:
-#              - worker
-#        preferredDuringSchedulingIgnoredDuringExecution:
-#        - weight: 1
-#          preference:
-#            matchExpressions:
-#            - key: kubernetes.io/arch
-#              operator: In
-#              values:
-#              - arm64
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: node-role.kubernetes.io/worker
+              operator: In
+              values:
+              - worker
+        preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 50
+          preference:
+            matchExpressions:
+            - key: kubernetes.io/arch
+              operator: In
+              values:
+              - arm64
