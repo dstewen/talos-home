@@ -159,23 +159,23 @@ nodes:
           - network: "0.0.0.0/0"
             gateway: "192.168.10.1"
         mtu: 1500
-#  - hostname: "blade7"
-#    ipAddress: "192.168.10.37"
-#    installDisk: "/dev/disk/by-id/nvme-WD_Blue_SN570_500GB_220628800801"
-#    machineSpec:
-#      secureboot: false
-#    talosImageURL: factory.talos.dev/installer/d62d27140eb15f9b984bb8277c9f4bab1ed83435edc09afa553f075ef323f103
-#    controlPlane: false
-#    networkInterfaces:
-#      - deviceSelector:
-#          hardwareAddr: "e4:5f:01:ec:16:9c"
-#        dhcp: false
-#        addresses:
-#          - "192.168.10.37/24"
-#        routes:
-#          - network: "0.0.0.0/0"
-#            gateway: "192.168.10.1"
-#        mtu: 1500
+  - hostname: "blade7"
+    ipAddress: "192.168.10.37"
+    installDisk: "/dev/disk/by-id/nvme-WD_Blue_SN570_500GB_220628800801"
+    machineSpec:
+      secureboot: false
+    talosImageURL: factory.talos.dev/installer/d62d27140eb15f9b984bb8277c9f4bab1ed83435edc09afa553f075ef323f103
+    controlPlane: false
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "e4:5f:01:ec:16:9c"
+        dhcp: false
+        addresses:
+          - "192.168.10.37/24"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "192.168.10.1"
+        mtu: 1500
   - hostname: "blade8"
     ipAddress: "192.168.10.38"
     installDisk: "/dev/disk/by-id/nvme-WD_Blue_SN570_500GB_220628800737"
