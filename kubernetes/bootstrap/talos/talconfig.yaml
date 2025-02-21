@@ -155,16 +155,25 @@ nodes:
           deviceSelectors:
             - hardwareAddr: "58:47:ca:78:f8:*"
         dhcp: false
-        addresses:
-          - "192.168.10.53/24"
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "192.168.10.1"
-            metric: 1
-        mtu: 1500
-        vip:
-          ip: "192.168.10.254"
-#        vlans:
+##        addresses:
+##          - "192.168.10.53/24"
+##        routes:
+##          - network: 0.0.0.0/0
+##            gateway: "192.168.10.1"
+##            metric: 1
+##        mtu: 1500
+##        vip:
+##          ip: "192.168.10.254"
+        vlans:
+          - vlanId: 10
+            mtu: 1500
+            addresses: [ "192.168.10.53/24" ]
+            routes:
+              - network: "0.0.0.0/0"
+                gateway: "192.168.10.1"
+                metric: 1
+            vip:
+              ip: "192.168.10.254"
 #          - vlanId: 40
 #            mtu: 1500
 #            addresses: [ "172.16.20.53/24" ]
