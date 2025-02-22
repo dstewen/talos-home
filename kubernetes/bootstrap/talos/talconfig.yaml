@@ -100,6 +100,7 @@ nodes:
           mode: active-backup
           deviceSelectors:
             - hardwareAddr: "58:47:ca:78:f1:*"
+              driver: i40e
         dhcp: false
         addresses:
           - "192.168.10.52/24"
@@ -154,6 +155,7 @@ nodes:
           mode: active-backup
           deviceSelectors:
             - hardwareAddr: "58:47:ca:78:f8:*"
+              driver: i40e
         dhcp: false
         addresses:
           - "192.168.10.53/24"
