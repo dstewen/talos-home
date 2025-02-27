@@ -12,7 +12,7 @@ resources:
 #  - ./bazarr/ks.yaml
 #  - ./calibre/ks.yaml
 #  - ./calibre-web/ks.yaml
-  - ./immich/ks.yaml
+#  - ./immich/ks.yaml
 #  - ./overseerr/ks.yaml
   - ./paperless/ks.yaml
   - ./plex/ks.yaml
