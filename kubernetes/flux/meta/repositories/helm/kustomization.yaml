@@ -5,6 +5,7 @@ kind: Kustomization
 resources:
   - ./1password-charts.yaml
   - ./actions-runner-controller.yaml
+  - ./aqua.yaml
   - ./authentik.yaml
   - ./backube.yaml
   - ./bjw-s.yaml
