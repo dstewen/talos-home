@@ -28,16 +28,16 @@ spec:
   values:
     controllers:
       boinc:
-#        pod:
-#          affinity:
-#            nodeAffinity:
-#              requiredDuringSchedulingIgnoredDuringExecution:
-#                nodeSelectorTerms:
-#                - matchExpressions:
-#                  - key: node-role.kubernetes.io/worker
-#                    operator: In
-#                    values:
-#                    - worker
+        pod:
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                - matchExpressions:
+                  - key: node-role.kubernetes.io/worker
+                    operator: In
+                    values:
+                    - worker
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
@@ -78,8 +78,8 @@ spec:
       app:
         controller: boinc
         type: LoadBalancer
-#        annotations:
-#          lbipam.cilium.io/ips: 192.168.10.232
+        annotations:
+          lbipam.cilium.io/ips: 192.168.10.237
         ports:
           http:
             port: 80
