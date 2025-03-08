@@ -27,7 +27,7 @@ spec:
       namespace: openebs-system
   values:
     controllers:
-      boinc:
+      boinc-arm64:
         pod:
           affinity:
             nodeAffinity:
