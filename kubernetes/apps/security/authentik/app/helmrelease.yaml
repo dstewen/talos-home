@@ -137,7 +137,7 @@ spec:
         maxReplicas: 2
       resources:
         requests:
-          cpu: 100m
+          cpu: 200m
           memory: 200M
         limits:
           memory: 700M
