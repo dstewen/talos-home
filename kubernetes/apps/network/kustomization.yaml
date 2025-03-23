@@ -9,4 +9,5 @@ resources:
   - ./external/ks.yaml
   - ./internal/ks.yaml
 #  - ./multus/ks.yaml
+#  - ./nebula-sync/ks.yaml
   - ./openspeedtest/ks.yaml

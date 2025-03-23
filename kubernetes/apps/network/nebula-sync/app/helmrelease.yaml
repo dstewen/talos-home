@@ -1,0 +1,60 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: nebula-sync
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.7.3
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+
+  values:
+    controllers:
+      nebula-sync:
+        type: statefulset
+
+        containers:
+          nebula-sync:
+            image:
+              repository: https://github.com/lovelaze/nebula-sync
+              tag: v0.7.0
+            resources:
+              requests:
+                cpu: "10m"
+              limits:
+                memory: "512Mi"
+            env:
+              PRIMARY: https://192.168.60.10|abc123
+              REPLICAS: https://192.168.60.26|abc123,https://10.0.200.5|abc123,https://10.0.200.6|abc123
+              FULL_SYNC: false
+              RUN_GRAVITY: false
+              CRON: "*/15 * * * *"
+
+              CLIENT_SKIP_TLS_VERIFICATION: true
+
+              TZ: "${TIMEZONE}"
+
+              SYNC_CONFIG_DNS: true
+              SYNC_CONFIG_DHCP: false
+              SYNC_CONFIG_NTP: false
+              SYNC_CONFIG_RESOLVER: false
+              SYNC_CONFIG_DATABASE: false
+              SYNC_CONFIG_MISC: false
+              SYNC_CONFIG_DEBUG: false
+
+              SYNC_GRAVITY_DHCP_LEASES: false
+              SYNC_GRAVITY_GROUP: false
+              SYNC_GRAVITY_AD_LIST: true
+              SYNC_GRAVITY_AD_LIST_BY_GROUP: true
+              SYNC_GRAVITY_DOMAIN_LIST: true
+              SYNC_GRAVITY_DOMAIN_LIST_BY_GROUP: true
+              SYNC_GRAVITY_CLIENT: false
+              SYNC_GRAVITY_CLIENT_BY_GROUP: false
