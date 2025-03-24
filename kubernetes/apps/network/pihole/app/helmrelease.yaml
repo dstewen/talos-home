@@ -3,7 +3,6 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: pihole
-  namespace: default
 spec:
   interval: 5m
   chart:
@@ -52,7 +51,7 @@ spec:
     virtualHost: "pihole.k.${SECRET_DOMAIN}"
     ingress:
       enabled: true
-      ingressClassName: nginx-internal
+      ingressClassName: internal
       annotations:
         kubernetes.io/tls-acme: "true"
         cert-manager.io/cluster-issuer: letsencrypt-prod
