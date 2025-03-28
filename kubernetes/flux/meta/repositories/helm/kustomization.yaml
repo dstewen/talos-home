@@ -31,6 +31,7 @@ resources:
   - ./kubernetes-sigs-descheduler-charts.yaml
   - ./kubernetes-sigs-nfd.yaml
   - ./metrics-server.yaml
+  - ./netdata.yaml
   - ./ollama.yaml
   - ./open-webui.yaml
   - ./openebs.yaml
