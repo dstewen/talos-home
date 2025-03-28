@@ -67,7 +67,7 @@ spec:
 
       envFrom:
         - secretRef:
-            name: netdata
+            name: netdata-secret
       alarms:
         storageclass: "ceph-block"
       database:
@@ -77,7 +77,7 @@ spec:
       enabled: true
       envFrom:
         - secretRef:
-            name: netdata
+            name: netdata-secret
     k8sState:
       enabled: true
       affinity:
