@@ -72,10 +72,19 @@ spec:
       rules:
         enabled: true
     server:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
       autoscaling:
         enabled: true
         minReplicas: 2
-        maxReplicas: 2
+        maxReplicas: 3
       initContainers:
         - name: init-db
           image: ghcr.io/onedr0p/postgres-init:16.3@sha256:9c136223fb4e05b0ca24e2350c2dc45843110d0e1d09615c52c9a037628c09fa
@@ -114,27 +123,27 @@ spec:
           - "id.${SECRET_DOMAIN}"
         https: false
     worker:
-#      affinity:
-#        nodeAffinity:
-#          requiredDuringSchedulingIgnoredDuringExecution:
-#            nodeSelectorTerms:
-#            - matchExpressions:
-#              - key: node-role.kubernetes.io/worker
-#                operator: In
-#                values:
-#                - worker
-#          preferredDuringSchedulingIgnoredDuringExecution:
-#          - weight: 50
-#            preference:
-#              matchExpressions:
-#              - key: kubernetes.io/arch
-#                operator: In
-#                values:
-#                - arm64
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: node-role.kubernetes.io/worker
+                operator: In
+                values:
+                - worker
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 50
+            preference:
+              matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - arm64
       autoscaling:
         enabled: true
         minReplicas: 2
-        maxReplicas: 2
+        maxReplicas: 4
       resources:
         requests:
           cpu: 200m
