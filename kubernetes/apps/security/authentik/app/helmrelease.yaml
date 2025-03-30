@@ -87,7 +87,7 @@ spec:
         maxReplicas: 3
       initContainers:
         - name: init-db
-          image: ghcr.io/onedr0p/postgres-init:16.3@sha256:9c136223fb4e05b0ca24e2350c2dc45843110d0e1d09615c52c9a037628c09fa
+          image: ghcr.io/onedr0p/postgres-init:16.8@sha256:217c47c886965474f5c234b5a35ed008f53b39ea90a3088b31c0da98e1f9284d
           envFrom:
             - secretRef:
                 name: *secret
