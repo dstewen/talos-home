@@ -24,7 +24,7 @@ spec:
         containers:
           nebula-sync:
             image:
-              repository: https://ghcr.io/lovelaze/nebula-sync
+              repository: ghcr.io/lovelaze/nebula-sync
               tag: v0.7.0
             resources:
               requests:
