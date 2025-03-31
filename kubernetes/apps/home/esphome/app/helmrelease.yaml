@@ -56,7 +56,7 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/esphome/esphome
+              repository: ghcr.io/home-operations/esphome
               tag: 2025.3.2
 
             probes:
