@@ -85,3 +85,9 @@ spec:
 #    adminPassword: ${PIHOLE_PASSWORD}
     extraEnvVars:
       RATE_LIMIT: "0/0"
+    podDnsConfig:
+      enabled: true
+      policy: "None"
+      nameservers:
+      - 127.0.0.1
+      - 1.1.1.1
