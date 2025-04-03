@@ -43,6 +43,13 @@ spec:
               SEARXNG_QUERY_URL: http://searxng.selfhosted.svc.cluster.local:8080/search?q=<query>
 #              AUDIO_OPENAI_API_BASE_URL: https://piper.${SECRET_DOMAIN}/v1
               AUDIO_OPENAI_API_KEY: sk-111111111111 # fake key needed to make ui happy
+              ENABLE_OAUTH_SIGNUP: true
+              OAUTH_MERGE_ACCOUNTS_BY_EMAIL: true
+              OAUTH_PROVIDER_NAME: Authentik
+              OAUTH_SCOPES: "openid email profile"
+            envFrom:
+              - secretRef:
+                  name: open-webui-secret
 
             resources:
               requests:
