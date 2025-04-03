@@ -85,6 +85,3 @@ spec:
 #    adminPassword: ${PIHOLE_PASSWORD}
     extraEnvVars:
       RATE_LIMIT: "0/0"
-  valueFrom:
-    - kind: Secret
-      name: pihole-admin-secret
