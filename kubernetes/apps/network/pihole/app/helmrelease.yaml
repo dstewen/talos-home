@@ -18,7 +18,7 @@ spec:
   values:
     monitoring:
       podMonitor:
-        enabled: true
+        enabled: false
       sidecar:
         enabled: true
         image:
@@ -30,7 +30,7 @@ spec:
           limits:
             memory: "128Mi"
     doh:
-      enabled: true
+      enabled: false
       name: "cloudflared"
       repository: "crazymax/cloudflared"
       tag: "2021.5.7"
@@ -38,37 +38,36 @@ spec:
       enabled: false
     serviceDns:
       type: LoadBalancer
-      externalTrafficPolicy: Local
-      loadBalancerIP: ${SVC_PIHOLE_IP}
+#      externalTrafficPolicy: Local
+#      loadBalancerIP: ${SVC_PIHOLE_IP}
       annotations:
-        metallb.universe.tf/allow-shared-ip: pihole-svc
+        lbipam.cilium.io/ips: 192.168.10.196
     serviceWeb:
       type: LoadBalancer
-      externalTrafficPolicy: Local
-      loadBalancerIP: ${SVC_PIHOLE_IP}
+#      externalTrafficPolicy: Local
+#      loadBalancerIP: ${SVC_PIHOLE_IP}
       annotations:
-        metallb.universe.tf/allow-shared-ip: pihole-svc
-    virtualHost: "pihole.k.${SECRET_DOMAIN}"
+        lbipam.cilium.io/ips: 192.168.10.196
+    virtualHost: "piholek.${SECRET_DOMAIN}"
     ingress:
       enabled: true
       ingressClassName: internal
-      annotations:
-        kubernetes.io/tls-acme: "true"
-        cert-manager.io/cluster-issuer: letsencrypt-prod
-        nginx.ingress.kubernetes.io/auth-signin: "https://auth.${SECRET_DOMAIN}"
-        nginx.ingress.kubernetes.io/auth-url: "http://authelia.kube-system.svc.cluster.local/api/authz/auth-request"
+#      annotations:
+#        kubernetes.io/tls-acme: "true"
+#        cert-manager.io/cluster-issuer: letsencrypt-prod
+#        nginx.ingress.kubernetes.io/auth-signin: "https://auth.${SECRET_DOMAIN}"
+#        nginx.ingress.kubernetes.io/auth-url: "http://authelia.kube-system.svc.cluster.local/api/authz/auth-request"
       path: /
       hosts:
-        - "pihole.k.${SECRET_DOMAIN}"
+        - &host "piholek.${SECRET_DOMAIN}"
       tls:
-        - secretName: pihole2-cert
-          hosts:
-            - "pihole.k.${SECRET_DOMAIN}"
+        - hosts:
+            - *host
     persistentVolumeClaim:
-      enabled: false
-    tolerations:
-      - key: "arm"
-        operator: "Exists"
+      enabled: true
+#    tolerations:
+#      - key: "arm"
+#        operator: "Exists"
     replicaCount: 1
 #    topologySpreadConstraints:
 #      - maxSkew: 1
@@ -83,9 +82,9 @@ spec:
 #        labelSelector:
 #          matchLabels:
 #            release: pihole
-    adminPassword: ${SECRET_PIHOLE_ADMIN_PASSWORD}
+#    adminPassword: ${PIHOLE_PASSWORD}
     extraEnvVars:
       RATE_LIMIT: "0/0"
   valuesFrom:
     - kind: Secret
-      name: pihole-helm-values
+      name: pihole-admin-secret
