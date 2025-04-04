@@ -41,6 +41,12 @@ spec:
         resources:
           limits:
             memory: "128Mi"
+
+    # -- default upstream DNS 1 server to use
+    DNS1: "1.1.1.1"
+    # -- default upstream DNS 2 server to use
+    DNS2: "1.0.0.1"
+
     doh:
       enabled: false
       name: "cloudflared"
