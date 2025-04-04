@@ -74,6 +74,12 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/instance: "admin"
           hajimari.io/group: "AI"
+
+          nginx.ingress.kubernetes.io/affinity: "cookie"
+          nginx.ingress.kubernetes.io/session-cookie-name: "route"
+          nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
+          nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
+          nginx.ingress.kubernetes.io/proxy-body-size: "4096m"
         hosts:
           - host: &host "open-webui.${SECRET_DOMAIN}"
             paths:
