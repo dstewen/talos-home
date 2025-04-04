@@ -11,4 +11,4 @@ resources:
 #  - ./multus/ks.yaml
 #  - ./nebula-sync/ks.yaml
   - ./openspeedtest/ks.yaml
-  - ./pihole/ks.yaml
+#  - ./pihole/ks.yaml
