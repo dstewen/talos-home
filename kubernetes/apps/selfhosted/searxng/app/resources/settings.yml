@@ -17,6 +17,9 @@ search:
     - all
     - en
     - en-US
+  formats:
+    - html
+    - json
 
 general:
   instance_name: DS Search
