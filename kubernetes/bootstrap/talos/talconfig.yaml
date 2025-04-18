@@ -42,21 +42,26 @@ nodes:
         #bond0
       - interface: bond0
         bond:
-          mode: active-backup
+          mode: 802.3ad
+          xmitHashPolicy: layer3+4
+          lacpRate: fast
+          miimon: 100
           deviceSelectors:
             - hardwareAddr: "58:47:ca:77:cf:*"
               driver: i40e
         dhcp: false
-        addresses:
-          - "192.168.10.51/24"
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "192.168.10.1"
-            metric: 1
         mtu: 1500
-        vip:
-          ip: "192.168.10.254"
-#        vlans:
+        vlans:
+          - vlanId: 10
+            dhcp: false
+            mtu: 1500
+            addresses: [ "192.168.10.51/24" ]
+            routes:
+              - network: "0.0.0.0/0"
+                gateway: "192.168.10.1"
+                metric: 1
+            vip:
+              ip: "192.168.10.254"
 #          - vlanId: 40
 #            mtu: 1500
 #            addresses: [ "172.16.20.51/24" ]
@@ -78,6 +83,14 @@ nodes:
               MONITOR ups@192.168.10.23 1 upsmon_local mypassword secondary
               SHUTDOWNCMD "/sbin/poweroff"
             mountPath: /usr/local/etc/nut/upsmon.conf
+      - name: lldpd
+        configFiles:
+          - content: |-
+              configure lldp portidsubtype ifname
+              unconfigure lldp management-addresses-advertisements
+              unconfigure lldp capabilities-advertisements
+              configure system description "Talos Node MS1"
+            mountPath: /usr/local/etc/lldpd/lldpd.conf
   - hostname: "ms2"
     ipAddress: "192.168.10.52"
     installDiskSelector:
@@ -97,21 +110,26 @@ nodes:
         #bond0
       - interface: bond0
         bond:
-          mode: active-backup
+          mode: 802.3ad
+          xmitHashPolicy: layer3+4
+          lacpRate: fast
+          miimon: 100
           deviceSelectors:
             - hardwareAddr: "58:47:ca:78:f1:*"
               driver: i40e
         dhcp: false
-        addresses:
-          - "192.168.10.52/24"
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "192.168.10.1"
-            metric: 1
         mtu: 1500
-        vip:
-          ip: "192.168.10.254"
-#        vlans:
+        vlans:
+          - vlanId: 10
+            dhcp: false
+            mtu: 1500
+            addresses: [ "192.168.10.52/24" ]
+            routes:
+              - network: "0.0.0.0/0"
+                gateway: "192.168.10.1"
+                metric: 1
+            vip:
+              ip: "192.168.10.254"
 #          - vlanId: 40
 #            mtu: 1500
 #            addresses: [ "172.16.20.52/24" ]
@@ -133,6 +151,14 @@ nodes:
               MONITOR ups@192.168.10.23 1 upsmon_local mypassword secondary
               SHUTDOWNCMD "/sbin/poweroff"
             mountPath: /usr/local/etc/nut/upsmon.conf
+      - name: lldpd
+        configFiles:
+          - content: |-
+              configure lldp portidsubtype ifname
+              unconfigure lldp management-addresses-advertisements
+              unconfigure lldp capabilities-advertisements
+              configure system description "Talos Node MS2"
+            mountPath: /usr/local/etc/lldpd/lldpd.conf
   - hostname: "ms3"
     ipAddress: "192.168.10.53"
     installDiskSelector:
@@ -152,30 +178,26 @@ nodes:
         #bond0
       - interface: bond0
         bond:
-          mode: active-backup
+          mode: 802.3ad
+          xmitHashPolicy: layer3+4
+          lacpRate: fast
+          miimon: 100
           deviceSelectors:
             - hardwareAddr: "58:47:ca:78:f8:*"
               driver: i40e
         dhcp: false
-        addresses:
-          - "192.168.10.53/24"
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "192.168.10.1"
-            metric: 1
         mtu: 1500
-        vip:
-          ip: "192.168.10.254"
-#        vlans:
-#          - vlanId: 10
-#            mtu: 1500
-#            addresses: [ "192.168.10.53/24" ]
-#            routes:
-#              - network: "0.0.0.0/0"
-#                gateway: "192.168.10.1"
-#                metric: 1
-#            vip:
-#              ip: "192.168.10.254"
+        vlans:
+          - vlanId: 10
+            dhcp: false
+            mtu: 1500
+            addresses: [ "192.168.10.53/24" ]
+            routes:
+              - network: "0.0.0.0/0"
+                gateway: "192.168.10.1"
+                metric: 1
+            vip:
+              ip: "192.168.10.254"
 #          - vlanId: 40
 #            mtu: 1500
 #            addresses: [ "172.16.20.53/24" ]
@@ -197,6 +219,14 @@ nodes:
               MONITOR ups@192.168.10.23 1 upsmon_local mypassword secondary
               SHUTDOWNCMD "/sbin/poweroff"
             mountPath: /usr/local/etc/nut/upsmon.conf
+      - name: lldpd
+        configFiles:
+          - content: |-
+              configure lldp portidsubtype ifname
+              unconfigure lldp management-addresses-advertisements
+              unconfigure lldp capabilities-advertisements
+              configure system description "Talos Node MS3"
+            mountPath: /usr/local/etc/lldpd/lldpd.conf
   - hostname: "blade5"
     ipAddress: "192.168.10.35"
     installDisk: "/dev/disk/by-id/nvme-WD_Blue_SN570_500GB_220628800811"
@@ -212,14 +242,16 @@ nodes:
           deviceSelectors:
             - hardwareAddr: "e4:5f:01:ec:16:b4"
         dhcp: false
-        addresses:
-          - "192.168.10.35/24"
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "192.168.10.1"
-            metric: 1
         mtu: 1500
-#        vlans:
+        vlans:
+          - vlanId: 10
+            dhcp: false
+            mtu: 1500
+            addresses: [ "192.168.10.35/24" ]
+            routes:
+              - network: "0.0.0.0/0"
+                gateway: "192.168.10.1"
+                metric: 1
 #          - vlanId: 40
 #            mtu: 1500
 #            addresses: [ "172.16.20.35/24" ]
@@ -234,6 +266,9 @@ nodes:
 #              - network: "192.168.30.0/24"
 #                gateway: "192.168.30.1"
 #                metric: 4096
+    nodeLabels:
+      node-role.kubernetes.io/worker: worker
+      feature.node.kubernetes.io/network.max-link-speed: 1g
   - hostname: "blade6"
     ipAddress: "192.168.10.36"
     installDisk: "/dev/disk/by-id/nvme-WD_Blue_SN570_500GB_220628800731"
@@ -249,14 +284,16 @@ nodes:
           deviceSelectors:
             - hardwareAddr: "e4:5f:01:ec:16:a5"
         dhcp: false
-        addresses:
-          - "192.168.10.36/24"
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "192.168.10.1"
-            metric: 1
         mtu: 1500
-#        vlans:
+        vlans:
+          - vlanId: 10
+            dhcp: false
+            mtu: 1500
+            addresses: [ "192.168.10.36/24" ]
+            routes:
+              - network: "0.0.0.0/0"
+                gateway: "192.168.10.1"
+                metric: 1
 #          - vlanId: 40
 #            mtu: 1500
 #            addresses: [ "172.16.20.36/24" ]
@@ -271,6 +308,9 @@ nodes:
 #              - network: "192.168.30.0/24"
 #                gateway: "192.168.30.1"
 #                metric: 4096
+    nodeLabels:
+      node-role.kubernetes.io/worker: worker
+      feature.node.kubernetes.io/network.max-link-speed: 1g
   - hostname: "blade7"
     ipAddress: "192.168.10.37"
     installDisk: "/dev/disk/by-id/nvme-WD_Blue_SN570_500GB_220628800801"
@@ -286,14 +326,16 @@ nodes:
           deviceSelectors:
             - hardwareAddr: "e4:5f:01:ec:16:9c"
         dhcp: false
-        addresses:
-          - "192.168.10.37/24"
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "192.168.10.1"
-            metric: 1
         mtu: 1500
-#        vlans:
+        vlans:
+          - vlanId: 10
+            dhcp: false
+            mtu: 1500
+            addresses: [ "192.168.10.37/24" ]
+            routes:
+              - network: "0.0.0.0/0"
+                gateway: "192.168.10.1"
+                metric: 1
 #          - vlanId: 40
 #            mtu: 1500
 #            addresses: [ "172.16.20.37/24" ]
@@ -308,6 +350,9 @@ nodes:
 #              - network: "192.168.30.0/24"
 #                gateway: "192.168.30.1"
 #                metric: 4096
+    nodeLabels:
+      node-role.kubernetes.io/worker: worker
+      feature.node.kubernetes.io/network.max-link-speed: 1g
   - hostname: "blade8"
     ipAddress: "192.168.10.38"
     installDisk: "/dev/disk/by-id/nvme-WD_Blue_SN570_500GB_220628800737"
@@ -323,14 +368,16 @@ nodes:
           deviceSelectors:
             - hardwareAddr: "e4:5f:01:ec:16:5a"
         dhcp: false
-        addresses:
-          - "192.168.10.38/24"
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "192.168.10.1"
-            metric: 1
         mtu: 1500
-#        vlans:
+        vlans:
+          - vlanId: 10
+            dhcp: false
+            mtu: 1500
+            addresses: [ "192.168.10.38/24" ]
+            routes:
+              - network: "0.0.0.0/0"
+                gateway: "192.168.10.1"
+                metric: 1
 #          - vlanId: 40
 #            mtu: 1500
 #            addresses: [ "172.16.20.38/24" ]
@@ -345,7 +392,9 @@ nodes:
 #              - network: "192.168.30.0/24"
 #                gateway: "192.168.30.1"
 #                metric: 4096
-
+    nodeLabels:
+      node-role.kubernetes.io/worker: worker
+      feature.node.kubernetes.io/network.max-link-speed: 1g
 # Global patches
 patches:
   - "@./patches/global/machine-files.yaml"
