@@ -5,6 +5,6 @@ kind: Kustomization
 namespace: trivy-system
 components:
   - ../../flux/components/common
-resources: []
+resources:
   # Flux-Kustomizations
-#  - ./trivy-operator/ks.yaml
+  - ./trivy-operator/ks.yaml
