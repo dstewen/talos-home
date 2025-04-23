@@ -7,7 +7,7 @@ metadata:
 spec:
   staticConfigs:
     - targets:
-        - "minecraft-ftb-minecraft-metrics.gameserver.svc.cluster.local:19565"
+        - "minecraft-ftb-metrics.gameserver.svc.cluster.local:19565"
 #      labels:
 #        application: MyMinecraftModPack
 #        instance: node1.unrealhosting.fr
