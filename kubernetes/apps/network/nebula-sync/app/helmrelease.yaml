@@ -25,7 +25,7 @@ spec:
           nebula-sync:
             image:
               repository: ghcr.io/lovelaze/nebula-sync
-              tag: v0.10.0
+              tag: v0.11.0
             resources:
               requests:
                 cpu: "10m"
