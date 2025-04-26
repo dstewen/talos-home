@@ -15,14 +15,19 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
 
   values:
     controllers:
       multus:
         type: daemonset
-
-        pod:
-          hostNetwork: true
 
         initContainers:
           cni-plugins:
@@ -43,9 +48,12 @@ spec:
               requests:
                 cpu: "10m"
               limits:
-                memory: "512Mi"
+                memory: "32Mi"
             securityContext:
               privileged: true
+
+    defaultPodOptions:
+      hostNetwork: true
 
     persistence:
       etc-cni-net-d:
