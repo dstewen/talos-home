@@ -10,6 +10,8 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../flux/components/volsync
   path: ./kubernetes/apps/media/qbittorrent/app
   prune: true
   sourceRef:
@@ -20,6 +22,13 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 5m
+  postBuild:
+    substitute:
+      APP: *app
+      APP_UID: "568"
+      APP_GID: "568"
+      VOLSYNC_CLAIM: qbittorrent-config
+      VOLSYNC_CAPACITY: 10Gi
 
 #---
 ## yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
