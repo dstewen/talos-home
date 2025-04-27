@@ -25,8 +25,8 @@ spec:
   dependsOn:
 #    - name: rook-ceph-cluster
 #      namespace: rook-ceph
-    - name: local-path-provisioner
-      namespace: storage
+#    - name: local-path-provisioner
+#      namespace: storage
     - name: volsync
       namespace: volsync
   values:
