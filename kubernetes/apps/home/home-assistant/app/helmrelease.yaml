@@ -152,7 +152,7 @@ spec:
                   port: code-server
     persistence:
       config:
-        existingClaim: home-assistant
+        existingClaim: ${VOLSYNC_CLAIM}
         globalMounts:
           - path: /config
       logs:
