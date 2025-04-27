@@ -10,6 +10,8 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../flux/components/volsync
   path: ./kubernetes/apps/home/unifi/app
   prune: true
   sourceRef:
@@ -20,3 +22,10 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 5m
+  postBuild:
+    substitute:
+      APP: *app
+      APP_UID: "999"
+      APP_GID: "999"
+      VOLSYNC_CLAIM: unifi-config
+      VOLSYNC_CAPACITY: 10Gi
