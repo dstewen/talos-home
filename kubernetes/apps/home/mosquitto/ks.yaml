@@ -28,5 +28,5 @@ spec:
       APP: *app
       APP_UID: "568"
       APP_GID: "568"
-      VOLSYNC_CLAIM: mosquitto
+      VOLSYNC_CLAIM: mosquitto-data
       VOLSYNC_CAPACITY: 1Gi
