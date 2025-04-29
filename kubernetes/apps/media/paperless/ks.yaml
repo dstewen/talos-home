@@ -16,8 +16,6 @@ spec:
       namespace: database
     - name: external-secrets-stores
       namespace: external-secrets
-    - name: volsync
-      namespace: volsync
   path: ./kubernetes/apps/media/paperless/app
   prune: true
   sourceRef:
