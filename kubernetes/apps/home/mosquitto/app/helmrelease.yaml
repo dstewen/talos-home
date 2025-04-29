@@ -24,24 +24,24 @@ spec:
   values:
     controllers:
       mosquitto:
-#        pod:
-#          affinity:
-#            nodeAffinity:
-#              requiredDuringSchedulingIgnoredDuringExecution:
-#                nodeSelectorTerms:
-#                - matchExpressions:
-#                  - key: node-role.kubernetes.io/worker
-#                    operator: In
-#                    values:
-#                    - worker
-#              preferredDuringSchedulingIgnoredDuringExecution:
-#              - weight: 1
-#                preference:
-#                  matchExpressions:
-#                  - key: kubernetes.io/arch
-#                    operator: In
-#                    values:
-#                    - arm64
+        pod:
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                - matchExpressions:
+                  - key: node-role.kubernetes.io/worker
+                    operator: In
+                    values:
+                    - worker
+              preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 1
+                preference:
+                  matchExpressions:
+                  - key: kubernetes.io/arch
+                    operator: In
+                    values:
+                    - arm64
         strategy: RollingUpdate
         annotations:
           reloader.stakater.com/auto: "true"
