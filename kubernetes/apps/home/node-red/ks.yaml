@@ -9,6 +9,8 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../flux/components/volsync
   dependsOn:
 #    - name: volsync
 #    - name: rook-ceph-cluster
@@ -24,7 +26,10 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 5m
-#  postBuild:
-#    substitute:
-#      APP: *app
-#      VOLSYNC_CAPACITY: 5Gi
+  postBuild:
+    substitute:
+      APP: *app
+      APP_UID: "1000"
+      APP_GID: "1000"
+      VOLSYNC_CLAIM: node-red
+      VOLSYNC_CAPACITY: 5Gi
