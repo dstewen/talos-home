@@ -15,7 +15,7 @@ resources:
 #  - ./immich/ks.yaml
   - ./maintainerr/ks.yaml
 #  - ./overseerr/ks.yaml
-#  - ./paperless/ks.yaml
+  - ./paperless/ks.yaml
   - ./plex/ks.yaml
 #  - ./prowlarr/ks.yaml
   - ./qbittorrent/ks.yaml
