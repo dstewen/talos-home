@@ -26,8 +26,8 @@ spec:
       namespace: database
 #    - name: local-path-provisioner
 #      namespace: storage
-    - name: volsync
-      namespace: volsync
+#    - name: volsync
+#      namespace: volsync
   values:
 #    defaultPodOptions:
 #      affinity:
