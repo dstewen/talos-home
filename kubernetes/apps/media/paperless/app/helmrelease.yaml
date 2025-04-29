@@ -147,7 +147,7 @@ spec:
               port: http
     persistence:
       config:
-        existingClaim: paperless-config
+        existingClaim: ${VOLSYNC_CLAIM}
         globalMounts:
           - path: /data/local
       nas:
