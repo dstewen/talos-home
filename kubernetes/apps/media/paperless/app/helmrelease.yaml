@@ -21,9 +21,7 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-  dependsOn:
-    - name: dragonfly-operator
-      namespace: database
+#  dependsOn:
 #    - name: local-path-provisioner
 #      namespace: storage
 #    - name: volsync
