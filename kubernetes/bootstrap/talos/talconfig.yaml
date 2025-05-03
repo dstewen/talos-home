@@ -62,19 +62,21 @@ nodes:
                 metric: 1
             vip:
               ip: "192.168.10.254"
-#          - vlanId: 40
+#          # IOT VLAN
+#          - vlanId: 100
 #            mtu: 1500
 #            addresses: [ "172.16.20.51/24" ]
 #            routes:
 #              - network: "172.16.20.0/24"
 #                gateway: "172.16.20.1"
 #                metric: 4097
-#          - vlanId: 30
+#          # GuestWifiVLAN
+#          - vlanId: 110
 #            mtu: 1500
-#            addresses: [ "192.168.30.51/24" ]
+#            addresses: [ "172.16.110.51/24" ]
 #            routes:
-#              - network: "192.168.30.0/24"
-#                gateway: "192.168.30.1"
+#              - network: "172.16.110.0/24"
+#                gateway: "172.16.110.1"
 #                metric: 4096
     extensionServices:
       - name: nut-client
@@ -130,19 +132,21 @@ nodes:
                 metric: 1
             vip:
               ip: "192.168.10.254"
-#          - vlanId: 40
+#          # IOT VLAN
+#          - vlanId: 100
 #            mtu: 1500
 #            addresses: [ "172.16.20.52/24" ]
 #            routes:
 #              - network: "172.16.20.0/24"
 #                gateway: "172.16.20.1"
 #                metric: 4097
-#          - vlanId: 30
+#          # GuestWifiVLAN
+#          - vlanId: 110
 #            mtu: 1500
-#            addresses: [ "192.168.30.52/24" ]
+#            addresses: [ "172.16.110.52/24" ]
 #            routes:
-#              - network: "192.168.30.0/24"
-#                gateway: "192.168.30.1"
+#              - network: "172.16.110.0/24"
+#                gateway: "172.16.110.1"
 #                metric: 4096
     extensionServices:
       - name: nut-client
@@ -198,19 +202,21 @@ nodes:
                 metric: 1
             vip:
               ip: "192.168.10.254"
-#          - vlanId: 40
+#          # IOT VLAN
+#          - vlanId: 100
 #            mtu: 1500
 #            addresses: [ "172.16.20.53/24" ]
 #            routes:
 #              - network: "172.16.20.0/24"
 #                gateway: "172.16.20.1"
 #                metric: 4097
-#          - vlanId: 30
+#          # GuestWifiVLAN
+#          - vlanId: 110
 #            mtu: 1500
-#            addresses: [ "192.168.30.53/24" ]
+#            addresses: [ "172.16.110.53/24" ]
 #            routes:
-#              - network: "192.168.30.0/24"
-#                gateway: "192.168.30.1"
+#              - network: "172.16.110.0/24"
+#                gateway: "172.16.110.1"
 #                metric: 4096
     extensionServices:
       - name: nut-client
@@ -252,19 +258,21 @@ nodes:
               - network: "0.0.0.0/0"
                 gateway: "192.168.10.1"
                 metric: 1
-#          - vlanId: 40
+#          # IOT VLAN
+#          - vlanId: 100
 #            mtu: 1500
 #            addresses: [ "172.16.20.35/24" ]
 #            routes:
 #              - network: "172.16.20.0/24"
 #                gateway: "172.16.20.1"
 #                metric: 4097
-#          - vlanId: 30
+#          # GuestWifiVLAN
+#          - vlanId: 110
 #            mtu: 1500
-#            addresses: [ "192.168.30.35/24" ]
+#            addresses: [ "172.16.110.35/24" ]
 #            routes:
-#              - network: "192.168.30.0/24"
-#                gateway: "192.168.30.1"
+#              - network: "172.16.110.0/24"
+#                gateway: "172.16.110.1"
 #                metric: 4096
     nodeLabels:
       node-role.kubernetes.io/worker: worker
@@ -294,19 +302,21 @@ nodes:
               - network: "0.0.0.0/0"
                 gateway: "192.168.10.1"
                 metric: 1
-#          - vlanId: 40
+#          # IOT VLAN
+#          - vlanId: 100
 #            mtu: 1500
 #            addresses: [ "172.16.20.36/24" ]
 #            routes:
 #              - network: "172.16.20.0/24"
 #                gateway: "172.16.20.1"
 #                metric: 4097
-#          - vlanId: 30
+#          # GuestWifiVLAN
+#          - vlanId: 110
 #            mtu: 1500
-#            addresses: [ "192.168.30.36/24" ]
+#            addresses: [ "172.16.110.36/24" ]
 #            routes:
-#              - network: "192.168.30.0/24"
-#                gateway: "192.168.30.1"
+#              - network: "172.16.110.0/24"
+#                gateway: "172.16.110.1"
 #                metric: 4096
     nodeLabels:
       node-role.kubernetes.io/worker: worker
@@ -336,19 +346,21 @@ nodes:
               - network: "0.0.0.0/0"
                 gateway: "192.168.10.1"
                 metric: 1
-#          - vlanId: 40
+#          # IOT VLAN
+#          - vlanId: 100
 #            mtu: 1500
 #            addresses: [ "172.16.20.37/24" ]
 #            routes:
 #              - network: "172.16.20.0/24"
 #                gateway: "172.16.20.1"
 #                metric: 4097
-#          - vlanId: 30
+#          # GuestWifiVLAN
+#          - vlanId: 110
 #            mtu: 1500
-#            addresses: [ "192.168.30.37/24" ]
+#            addresses: [ "172.16.110.37/24" ]
 #            routes:
-#              - network: "192.168.30.0/24"
-#                gateway: "192.168.30.1"
+#              - network: "172.16.110.0/24"
+#                gateway: "172.16.110.1"
 #                metric: 4096
     nodeLabels:
       node-role.kubernetes.io/worker: worker
@@ -378,19 +390,21 @@ nodes:
               - network: "0.0.0.0/0"
                 gateway: "192.168.10.1"
                 metric: 1
-#          - vlanId: 40
+#          # IOT VLAN
+#          - vlanId: 100
 #            mtu: 1500
 #            addresses: [ "172.16.20.38/24" ]
 #            routes:
 #              - network: "172.16.20.0/24"
 #                gateway: "172.16.20.1"
 #                metric: 4097
-#          - vlanId: 30
+#          # GuestWifiVLAN
+#          - vlanId: 110
 #            mtu: 1500
-#            addresses: [ "192.168.30.38/24" ]
+#            addresses: [ "172.16.110.38/24" ]
 #            routes:
-#              - network: "192.168.30.0/24"
-#                gateway: "192.168.30.1"
+#              - network: "172.16.110.0/24"
+#                gateway: "172.16.110.1"
 #                metric: 4096
     nodeLabels:
       node-role.kubernetes.io/worker: worker
