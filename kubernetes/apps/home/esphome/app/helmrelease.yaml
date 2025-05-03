@@ -25,11 +25,11 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-  dependsOn:
+#  dependsOn:
 #    - name: local-path-provisioner
 #      namespace: storage
-    - name: volsync
-      namespace: volsync
+#    - name: volsync
+#      namespace: volsync
   values:
     controllers:
       esphome:
