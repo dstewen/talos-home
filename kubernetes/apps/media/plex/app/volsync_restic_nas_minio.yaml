@@ -32,19 +32,24 @@ metadata:
 spec:
   sourcePVC: plex-config-0
   trigger:
-    schedule: "0 7 * * *"
+    schedule: "0 * * * *"
   restic:
     copyMethod: Snapshot
     pruneIntervalDays: 7
     repository: plex-restic-secret
     cacheCapacity: 8Gi
-    cacheStorageClassName: local-hostpath
+    cacheStorageClassName: openebs-hostpath
+    cacheAccessModes: [ ReadWriteOnce ]
     volumeSnapshotClassName: csi-ceph-blockpool
     storageClassName: ceph-block
+    accessModes: [ ReadWriteOnce ]
     moverSecurityContext:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
     retain:
-      daily: 7
-      within: 3d
+      hourly: 24
+      daily: 10
+      weekly: 4
+      monthly: 3
+      yearly: 1
