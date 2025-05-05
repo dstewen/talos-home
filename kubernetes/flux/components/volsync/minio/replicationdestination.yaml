@@ -13,6 +13,7 @@ spec:
     copyMethod: Snapshot
     repository: "${APP}-volsync-minio"
     cacheStorageClassName: "${VOLSYNC_CACHE_SNAPSHOTCLASS:-openebs-hostpath}"
+    cacheAccessModes: ["${VOLSYNC_CACHE_ACCESSMODES:-ReadWriteOnce}"]
     cacheCapacity: "${VOLSYNC_CACHE_CAPACITY:-2Gi}"
     storageClassName: "${VOLSYNC_STORAGECLASS:-ceph-block}"
     volumeSnapshotClassName: "${VOLSYNC_SNAPSHOTCLASS:-csi-ceph-blockpool}"
@@ -20,8 +21,7 @@ spec:
       runAsUser: ${APP_UID:-1000}
       runAsGroup: ${APP_GID:-1000}
       fsGroup: ${APP_GID:-1000}
-    accessModes:
-      - "${VOLSYNC_ACCESSMODES:-ReadWriteOnce}"
+    accessModes: [ "${VOLSYNC_ACCESSMODES:-ReadWriteOnce}" ]
     capacity: "${VOLSYNC_CAPACITY:-2Gi}"
     enableFileDeletion: true
     cleanupCachePVC: true
