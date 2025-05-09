@@ -37,7 +37,7 @@ spec:
     copyMethod: Direct
     pruneIntervalDays: 14
     repository: plex-restic-secret
-    storageClassName: local-hostpath
+    storageClassName: openebs-hostpath
     moverSecurityContext:
       runAsUser: 568
       runAsGroup: 568
