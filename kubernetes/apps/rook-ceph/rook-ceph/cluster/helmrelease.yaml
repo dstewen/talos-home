@@ -116,13 +116,13 @@ spec:
 #              - name: /dev/disk/by-id/nvme-INTEL_SSDPEKKW512G8_BTHH81000E09512D
           - name: ms1
             devices:
-              - name: /dev/disk/by-id/nvme-WD_BLACK_SN770_2TB_24193M803271
+              - name: /dev/disk/by-id/nvme-SAMSUNG_MZQL21T9HCJR-00A07_S64GNE0R401606
           - name: ms2
             devices:
-              - name: /dev/disk/by-id/nvme-WD_BLACK_SN770_2TB_23516J803074
+              - name: /dev/disk/by-id/nvme-SAMSUNG_MZQL21T9HCJR-00A07_S64GNE0R401626
           - name: ms3
             devices:
-              - name: /dev/disk/by-id/nvme-WD_BLACK_SN770_2TB_23516J803093
+              - name: /dev/disk/by-id/nvme-SAMSUNG_MZQL21T9HCJR-00BAL_S68LNE0RC10493
 #          - name: blade7
 #            devices:
 #              - name: /dev/nvme0n1p3
