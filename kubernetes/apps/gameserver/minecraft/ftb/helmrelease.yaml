@@ -148,7 +148,7 @@ spec:
 #      storageClass: local-hostpath
       dataDir:
         enabled: true
-        existingClaim: minecraft-ftb-data-v1
+        existingClaim: minecraft-ftb-data
     extraEnv:
       # recommended rolling logs for saving disk
       ENABLE_ROLLING_LOGS: true
