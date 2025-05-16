@@ -5,6 +5,6 @@ kind: Kustomization
 namespace: gameserver
 components:
   - ../../flux/components/common
-resources:
+resources: []
   # Flux-Kustomizations
-  - ./minecraft/ks.yaml
+#  - ./minecraft/ks.yaml
