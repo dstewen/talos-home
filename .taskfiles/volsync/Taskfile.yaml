@@ -78,7 +78,7 @@ tasks:
       - which kubectl
 
   restore:
-    desc: Restore an app [CLUSTER=main] [NS=default] [APP=required] [PREVIOUS=required]
+    desc: Restore an app [NS=default] [APP=required] [PREVIOUS=required]
     cmds:
       # Suspend
       - flux --namespace {{.NS}} suspend kustomization {{.APP}}
@@ -98,23 +98,23 @@ tasks:
     vars:
       NS: '{{.NS | default "default"}}'
       CONTROLLER:
-        sh: kubectl --context {{.CLUSTER}} --namespace {{.NS}} get deployment {{.APP}} &>/dev/null && echo deployment || echo statefulset
+        sh: kubectl --namespace {{.NS}} get deployment {{.APP}} &>/dev/null && echo deployment || echo statefulset
     env:
       NS: '{{.NS}}'
       APP: '{{.APP}}'
       PREVIOUS: '{{.PREVIOUS}}'
       CLAIM:
-        sh: kubectl --context {{.CLUSTER}} --namespace {{.NS}} get replicationsources/{{.APP}} --output=jsonpath="{.spec.sourcePVC}"
+        sh: kubectl --namespace {{.NS}} get replicationsources/{{.APP}} --output=jsonpath="{.spec.sourcePVC}"
       ACCESS_MODES:
-        sh: kubectl --context {{.CLUSTER}} --namespace {{.NS}} get replicationsources/{{.APP}} --output=jsonpath="{.spec.restic.accessModes}"
+        sh: kubectl --namespace {{.NS}} get replicationsources/{{.APP}} --output=jsonpath="{.spec.restic.accessModes}"
       STORAGE_CLASS_NAME:
-        sh: kubectl --context {{.CLUSTER}} --namespace {{.NS}} get replicationsources/{{.APP}} --output=jsonpath="{.spec.restic.storageClassName}"
+        sh: kubectl --namespace {{.NS}} get replicationsources/{{.APP}} --output=jsonpath="{.spec.restic.storageClassName}"
       PUID:
-        sh: kubectl --context {{.CLUSTER}} --namespace {{.NS}} get replicationsources/{{.APP}} --output=jsonpath="{.spec.restic.moverSecurityContext.runAsUser}"
+        sh: kubectl --namespace {{.NS}} get replicationsources/{{.APP}} --output=jsonpath="{.spec.restic.moverSecurityContext.runAsUser}"
       PGID:
-        sh: kubectl --context {{.CLUSTER}} --namespace {{.NS}} get replicationsources/{{.APP}} --output=jsonpath="{.spec.restic.moverSecurityContext.runAsGroup}"
+        sh: kubectl --namespace {{.NS}} get replicationsources/{{.APP}} --output=jsonpath="{.spec.restic.moverSecurityContext.runAsGroup}"
     requires:
-      vars: [CLUSTER, APP, PREVIOUS]
+      vars: [APP, PREVIOUS]
     preconditions:
       - test -f {{.VOLSYNC_RESOURCES_DIR}}/replicationdestination.yaml.j2
       - which flux kubectl minijinja-cli
