@@ -1,5 +1,6 @@
 ---
-apiVersion: external-secrets.io/v1beta1
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/external-secrets.io/externalsecret_v1.json
+apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
   name: readarr-audiobooks-restic
@@ -26,6 +27,7 @@ spec:
     - extract:
         key: volsync-restic-template
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/volsync.backube/replicationsource_v1alpha1.json
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
