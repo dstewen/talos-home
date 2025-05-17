@@ -34,7 +34,7 @@ spec:
           init-db:
             image:
               repository: ghcr.io/home-operations/postgres-init
-              tag: 16.8
+              tag: 17.5
             envFrom:
               - secretRef:
                   name: open-webui-secret
