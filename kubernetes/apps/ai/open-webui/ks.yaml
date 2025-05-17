@@ -12,8 +12,16 @@ spec:
       app.kubernetes.io/name: *app
   path: ./kubernetes/apps/ai/open-webui/app
   dependsOn:
+    - name: external-secrets-stores
+      namespace: external-secrets
     - name: ollama
       namespace: ai
+    - name: cloudnative-pg-cluster
+      namespace: database
+#    - name: dragonfly-cluster
+#      namespace: database
+    - name: searxng
+      namespace: selfhosted
   prune: true
   sourceRef:
     kind: GitRepository

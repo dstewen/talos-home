@@ -30,6 +30,15 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
 
+        initContainers:
+          init-db:
+            image:
+              repository: ghcr.io/home-operations/postgres-init
+              tag: 16.8
+            envFrom:
+              - secretRef:
+                  name: open-webui-secret
+
         containers:
           app:
             image:
