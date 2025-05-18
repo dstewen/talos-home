@@ -65,6 +65,7 @@ spec:
               OAUTH_MERGE_ACCOUNTS_BY_EMAIL: true
               OAUTH_PROVIDER_NAME: Authentik
               OAUTH_SCOPES: "openid email profile"
+              TZ: Australia/Melbourne
             envFrom:
               - secretRef:
                   name: open-webui-secret
