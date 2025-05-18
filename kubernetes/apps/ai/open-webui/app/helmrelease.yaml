@@ -51,6 +51,11 @@ spec:
               ENABLE_RAG_WEB_SEARCH: true
               RAG_WEB_SEARCH_ENGINE: searxng
               SEARXNG_QUERY_URL: http://searxng.selfhosted.svc.cluster.local:8080/search?q=<query>
+              # Redis
+              # https://docs.openwebui.com/getting-started/advanced-topics/env-configuration/#redis
+              ENABLE_WEBSOCKET_SUPPORT: true
+              WEBSOCKET_MANAGER: "redis"
+              WEBSOCKET_REDIS_URL: "redis://dragonfly.database.svc.cluster.local:6379"
 #              AUDIO_OPENAI_API_BASE_URL: https://piper.${SECRET_DOMAIN}/v1
               AUDIO_OPENAI_API_KEY: sk-111111111111 # fake key needed to make ui happy
               ENABLE_OPENAI_API: false
