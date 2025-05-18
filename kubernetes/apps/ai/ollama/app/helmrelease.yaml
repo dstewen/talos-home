@@ -98,7 +98,7 @@ spec:
       data:
         existingClaim: ollama-data-pvc
         advancedMounts:
-          backend:
+          ollama:
             main:
               - path: /.ollama
 
