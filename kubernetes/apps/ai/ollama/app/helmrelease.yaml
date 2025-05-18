@@ -32,34 +32,32 @@ spec:
 
   values:
     controllers:
-      backend:
-        type: statefulset
+      ollama:
+        replicas: 3 # 1 per node
 
         annotations:
           reloader.stakater.com/auto: "true"
 
         containers:
-          main:
+          app:
             image:
-              repository: docker.io/ollama/ollama
-              tag: 0.7.0@sha256:f6699242880c38eb356dfd8204b08b7a7ba4da2645bdece55a0871bf6752a585
-
+              repository: ghcr.io/joryirving/ollama-intel-gpu
+              tag: latest
+              # tag: ipex-llm-v.0.0.1-2
+            securityContext:
+              privileged: true
             env:
               TZ: ${TIMEZONE}
-              LIBVA_DRIVER_NAME: i965
+              #LIBVA_DRIVER_NAME: i965
               OLLAMA_HOST: 0.0.0.0
               OLLAMA_ORIGINS: "*"
               OLLAMA_LOG_LEVEL: debug
               OLLAMA_MODELS: /models
-
-            securityContext:
-              privileged: true
-
+              IPEX_LLM_NUM_CTX: 16384
+              ONEAPI_DEVICE_SELECTOR: level_zero:0
             resources:
               requests:
-                memory: 8G
                 cpu: 2000m
-                gpu.intel.com/i915: "1"
               limits:
                 memory: 16G
                 gpu.intel.com/i915: "1"
@@ -79,21 +77,21 @@ spec:
             intel.feature.node.kubernetes.io/gpu: "true"
 
     service:
-      backend:
-        controller: backend
+      app:
+        controller: ollama
         ports:
           http:
             port: &port 11434
 
     ingress:
-      backend:
+      app:
         className: internal
         hosts:
           - host: &host ollama.${SECRET_DOMAIN}
             paths:
               - path: /
                 service:
-                  identifier: backend
+                  identifier: app
                   port: *port
 
     persistence:
@@ -117,3 +115,7 @@ spec:
         path: /volume2/piNFS01/flux-cluster/ollama/models
         globalMounts:
           - path: /models
+
+      dri:
+        type: hostPath
+        hostPath: /dev/dri
