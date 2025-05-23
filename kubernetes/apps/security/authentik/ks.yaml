@@ -19,6 +19,11 @@ spec:
       namespace: security
     - name: dragonfly-cluster
       namespace: database
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2
+      kind: HelmRelease
+      name: *app
+      namespace: *namespace
   path: ./kubernetes/apps/security/authentik/app
   prune: true
   sourceRef:
