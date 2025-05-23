@@ -16,6 +16,11 @@ spec:
 #    - name: rook-ceph-cluster
     - name: external-secrets-stores
       namespace: external-secrets
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2
+      kind: HelmRelease
+      name: *app
+      namespace: *namespace
   path: ./kubernetes/apps/home/node-red/app
   prune: true
   sourceRef:
