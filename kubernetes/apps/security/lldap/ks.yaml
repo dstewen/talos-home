@@ -11,6 +11,11 @@ spec:
       namespace: database
     - name: external-secrets-stores
       namespace: external-secrets
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2
+      kind: HelmRelease
+      name: *app
+      namespace: *namespace
   targetNamespace: *namespace
   commonMetadata:
     labels:
