@@ -3,7 +3,7 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app ollama
-  namespace: ai
+  namespace: &namespace ai
 spec:
   targetNamespace: ai
   commonMetadata:
@@ -12,6 +12,11 @@ spec:
   dependsOn:
     - name: external-secrets-stores
       namespace: external-secrets
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2
+      kind: HelmRelease
+      name: *app
+      namespace: *namespace
   path: ./kubernetes/apps/ai/ollama/app
   prune: true
   sourceRef:
