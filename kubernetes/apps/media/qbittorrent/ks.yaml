@@ -12,6 +12,11 @@ spec:
       app.kubernetes.io/name: *app
   components:
     - ../../../../flux/components/volsync
+  dependsOn:
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
+    - name: volsync
+      namespace: volsync
   path: ./kubernetes/apps/media/qbittorrent/app
   prune: true
   sourceRef:
