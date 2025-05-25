@@ -110,6 +110,13 @@ spec:
               - --custom-model-dir
               - /custom
 
+            resources:
+              requests:
+                cpu: 100m
+                memory: 32Mi
+              limits:
+                memory: 128Mi
+
     service:
       piper:
         type: LoadBalancer
