@@ -34,3 +34,5 @@ spec:
 #    controllerManager:
 #      nodeSelector:
 #        node-role.kubernetes.io/worker: worker
+    serviceMonitor:
+      enabled: true
