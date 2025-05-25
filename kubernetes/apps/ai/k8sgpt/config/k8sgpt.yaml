@@ -11,4 +11,4 @@ spec:
     #model: gpt-3.5-turbo
     model: deepseek-coder:6.7b
   noCache: false
-  version: v0.3.39
+  version: v0.4.17
