@@ -48,7 +48,7 @@ spec:
           main:
             image:
               repository: ghcr.io/immich-app/immich-machine-learning
-              tag: v1.131.2-openvino@sha256:d27938d3eeab1a17cb99a17e2b0e8e23f52d9f244e35eea84a81760813bbf05b
+              tag: v1.131.3-openvino@sha256:0e3702a223f7e30b83051b613223de911ecbe1d1a7d072d793c24ccf07db66d9
 
             env:
               IMMICH_MEDIA_LOCATION: &mediaLocation /usr/src/app/upload
