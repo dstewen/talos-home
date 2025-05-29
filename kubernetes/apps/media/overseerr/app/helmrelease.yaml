@@ -114,10 +114,12 @@ spec:
         existingClaim: overseerr
         globalMounts:
           - path: /app/config
-      cache:
-        existingClaim: overseerr-cache
-        globalMounts:
-          - path: /app/config/cache
+
+#Disabling cache - see if this helps
+#      cache:
+#        existingClaim: overseerr-cache
+#        globalMounts:
+#          - path: /app/config/cache
       logs:
         type: emptyDir
         globalMounts:
