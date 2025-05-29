@@ -100,8 +100,8 @@ spec:
 #          gethomepage.dev/widget.type: overseerr
 #          gethomepage.dev/widget.url: http://overseerr.media:80
 #          gethomepage.dev/widget.key: "MTczMDYwNTU2MzE1MzkzZGVlZWE3LTNkMTMtNDkzZi05ZTEzLWVhNmZkMGRmZmFlZA=="
-          external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
-        className: external
+          external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
+        className: internal
         hosts:
           - host: requests.${SECRET_DOMAIN}
             paths:
