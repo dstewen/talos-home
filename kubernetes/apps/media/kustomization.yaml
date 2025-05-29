@@ -14,7 +14,7 @@ resources:
 #  - ./calibre-web/ks.yaml
 #  - ./immich/ks.yaml
   - ./maintainerr/ks.yaml
-#  - ./overseerr/ks.yaml
+  - ./overseerr/ks.yaml
 #  - ./paperless/ks.yaml
   - ./plex/ks.yaml
 #  - ./prowlarr/ks.yaml
