@@ -59,6 +59,8 @@ spec:
             image:
               repository: ghcr.io/jorenn92/maintainerr
               tag: 2.16.0
+            env:
+              TZ: Australia/Melbourne
             probes:
               liveness:
                 enabled: true
