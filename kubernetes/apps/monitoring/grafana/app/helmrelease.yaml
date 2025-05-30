@@ -414,7 +414,7 @@ spec:
           gnetId: 15661
           revision: 2
           datasource:
-            - { name: DS_PROMETHEUS, value: Prometheus }
+            - { name: VictoriaMetrics-prod-all, value: Prometheus }
         kube-autoscaling-hpa:
           # renovate: depName="Kubernetes / Autoscaling / Horizontal Pod Autoscaler"
           gnetId: 22251
