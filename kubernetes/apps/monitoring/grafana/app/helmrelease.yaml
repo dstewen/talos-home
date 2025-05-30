@@ -746,7 +746,8 @@ spec:
           # renovate: depName="Node Status"
           gnetId: 22820
           revision: 1
-          datasource: Prometheus
+          datasource:
+            - { name: DS_VICTORIA, value: Prometheus }
         node-temperature:
           # renovate: depName="Node Exporter / Node Temperatures"
           gnetId: 15202
