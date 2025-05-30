@@ -572,17 +572,20 @@ spec:
           # renovate: depName="Synology NAS Overview"
           gnetId: 14364
           revision: 8
-          datasource: Prometheus
+          datasource:
+            - { name: DS_PROMETHEUS, value: Prometheus }
         synology-nas-details:
           # renovate: depName="Synology NAS Details"
           gnetId: 14284
           revision: 10
-          datasource: Prometheus
+          datasource:
+            - { name: DS_PROMETHEUS, value: Prometheus }
         synology-dashboard:
           # renovate: depName="Synology Dashboard"
           gnetId: 14590
           revision: 3
-          datasource: Prometheus
+          datasource:
+            - { name: DS_PROMETHEUS, value: Prometheus }
       nginx:
         nginx:
           url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/grafana/dashboards/nginx.json
