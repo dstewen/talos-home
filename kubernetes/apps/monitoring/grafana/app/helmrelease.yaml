@@ -730,7 +730,8 @@ spec:
           # renovate: depName="Node Information"
           gnetId: 22403
           revision: 12
-          datasource: Prometheus
+          datasource:
+            - { name: DS_PROMETHEUS, value: Prometheus }
         node-network:
           # renovate: depName="Node / Network"
           gnetId: 22273
