@@ -714,7 +714,8 @@ spec:
           # renovate: depName="Minecraft Server Stats - Updated"
           gnetId: 21835
           revision: 1
-          datasource: Prometheus
+          datasource:
+            - { name: DS_PROMETHEUS, value: Prometheus }
         node-cpu-system:
           # renovate: depName="Node / CPU and System"
           gnetId: 22275
