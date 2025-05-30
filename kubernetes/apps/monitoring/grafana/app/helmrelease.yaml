@@ -657,7 +657,8 @@ spec:
           # renovate: depName="qBittorrent Dashboard"
           gnetId: 23341
           revision: 3
-          datasource: Prometheus
+          datasource:
+            - { name: DS_PROMETHEUS, value: Prometheus }
         redis:
           # renovate: depName="Redis"
           gnetId: 11835
