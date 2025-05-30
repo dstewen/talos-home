@@ -604,7 +604,8 @@ spec:
           # renovate: depName="Prometheus Metrics Management"
           gnetId: 19341
           revision: 4
-          datasource: Prometheus
+          datasource:
+            - { name: DS_PROMETHEUS, value: Prometheus }
       system:
         authentik:
           # renovate: depName="Authentik"
