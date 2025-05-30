@@ -533,7 +533,8 @@ spec:
           # renovate: depName="SNMP device"
           gnetId: 20347
           revision: 2
-          datasource: Prometheus
+          datasource:
+            - { name: DS_PROMETHEUS, value: Prometheus }
         snmp-device-summary:
           # renovate: depName="SNMP Device Summary"
           gnetId: 12489
