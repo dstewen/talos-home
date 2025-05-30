@@ -110,14 +110,14 @@ spec:
           hajimari.io/group: Security
           hajimari.io/appName: Authentik
           hajimari.io/url: "https://id.${SECRET_DOMAIN}"
-#          gethomepage.dev/enabled: "true"
-#          gethomepage.dev/icon: authentik.png
-#          gethomepage.dev/name: Authentik
-#          gethomepage.dev/group: Infrastructure
-#          gethomepage.dev/description: OIDC User Management
-#          gethomepage.dev/widget.type: authentik
-#          gethomepage.dev/widget.url: http://authentik-server.security.svc.cluster.local
-#          gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_AUTHENTIK_TOKEN}}"
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: authentik.png
+          gethomepage.dev/name: Authentik
+          gethomepage.dev/group: Infrastructure
+          gethomepage.dev/description: OIDC User Management
+          gethomepage.dev/widget.type: authentik
+          gethomepage.dev/widget.url: http://authentik-server.security.svc.cluster.local
+          gethomepage.dev/widget.key: "{{AUTHENTIK_HOMEPAGE_TOKEN}}"
           external-dns.alpha.kubernetes.io/target: "internal.${SECRET_DOMAIN}"
         hosts:
           - "id.${SECRET_DOMAIN}"
