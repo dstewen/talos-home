@@ -413,12 +413,8 @@ spec:
           # renovate: depName="K8S Dashboard EN 20250125"
           gnetId: 15661
           revision: 2
-          datasource: Prometheus
-        k8s-node-metrics-2025:
-          # renovate: depName="K8s Node Metrics / Multi Clusters (Node Exporter, Prometheus, Grafana11, 2025, EN)"
-          gnetId: 15661
-          revision: 2
-          datasource: Prometheus
+          datasource:
+            - { name: DS_PROMETHEUS, value: Prometheus }
         kube-autoscaling-hpa:
           # renovate: depName="Kubernetes / Autoscaling / Horizontal Pod Autoscaler"
           gnetId: 22251
