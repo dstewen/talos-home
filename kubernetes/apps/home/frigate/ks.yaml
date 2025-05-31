@@ -10,11 +10,17 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../flux/components/volsync
   dependsOn:
     - name: mosquitto
       namespace: home
     - name: node-feature-discovery-rules
       namespace: kube-system
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
+    - name: volsync
+      namespace: volsync
   path: ./kubernetes/apps/home/frigate/app
   prune: true
   sourceRef:
@@ -25,3 +31,8 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 5m
+  postBuild:
+    substitute:
+      APP: *app
+      VOLSYNC_CLAIM: frigate
+      VOLSYNC_CAPACITY: 10Gi
