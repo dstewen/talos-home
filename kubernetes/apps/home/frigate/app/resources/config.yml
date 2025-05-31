@@ -58,11 +58,11 @@ go2rtc:
       - rtsp://{FRIGATE_RTSP_USER_WYZE3}:{FRIGATE_RTSP_PASSWORD_WYZE3}@192.168.1.25/ch0#timeout=30
     office_sub:
       - rtsp://{FRIGATE_RTSP_USER_WYZE3}:{FRIGATE_RTSP_PASSWORD_WYZE3}@192.136.1.25/ch1#timeout=30
-  webrtc:
-    listen: ":8555"
-    candidates:
-      - "{SVC_FRIGATE_ADDR}:8555" # <--- enter frigate host IP here
-      - stun:8555
+#  webrtc:
+#    listen: ":8555"
+#    candidates:
+#      - "{SVC_FRIGATE_ADDR}:8555" # <--- enter frigate host IP here
+#      - stun:8555
 cameras:
   phone_rtsp:
     ffmpeg:
