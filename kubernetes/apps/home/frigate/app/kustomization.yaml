@@ -6,7 +6,7 @@ resources:
   - ./externalsecrets.yaml
   - ./helmrelease.yaml
 #  - ../../../../templates/volsync
-  - ./volume.yaml
+#  - ./volume.yaml
 configMapGenerator:
   - name: frigate-configmap
     files:

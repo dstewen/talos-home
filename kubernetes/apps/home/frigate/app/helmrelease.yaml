@@ -124,7 +124,7 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: frigate
+        existingClaim: ${VOLSYNC_CLAIM}
       config-file:
         type: configMap
         name: frigate-configmap
