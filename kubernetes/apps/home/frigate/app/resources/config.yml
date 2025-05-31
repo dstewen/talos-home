@@ -97,8 +97,8 @@ cameras:
         record: preset-record-generic-audio-copy
     live:
       stream_name: office
-    onvif:
-      host: 192.168.1.25
-      port: 80
-      user: '{FRIGATE_RTSP_USER_WYZE3}'
-      password: '{FRIGATE_RTSP_PASSWORD_WYZE3}'
+#    onvif:
+#      host: 192.168.1.25
+#      port: 80
+#      user: '{FRIGATE_RTSP_USER_WYZE3}'
+#      password: '{FRIGATE_RTSP_PASSWORD_WYZE3}'
