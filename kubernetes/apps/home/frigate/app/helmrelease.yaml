@@ -91,6 +91,7 @@ spec:
         controller: frigate
         annotations:
           lbipam.cilium.io/ips: ${SVC_FRIGATE_ADDR}
+        type: LoadBalancer
         ports:
           http:
             port: *port
