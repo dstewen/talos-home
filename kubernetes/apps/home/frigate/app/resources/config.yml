@@ -55,10 +55,14 @@ go2rtc:
     phone_rtsp_sub:
       - rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@192.168.1.13:8554/live
     office:
-      - rtsp://{FRIGATE_RTSP_USER_WYZE3}:{FRIGATE_RTSP_PASSWORD_WYZE3}@192.168.1.25:554/ch0
+      - rtsp://{FRIGATE_RTSP_USER_WYZE3}:{FRIGATE_RTSP_PASSWORD_WYZE3}@192.168.1.25/ch0#timeout=30
     office_sub:
-      - rtsp://{FRIGATE_RTSP_USER_WYZE3}:{FRIGATE_RTSP_PASSWORD_WYZE3}@192.136.1.25:554/ch1
-
+      - rtsp://{FRIGATE_RTSP_USER_WYZE3}:{FRIGATE_RTSP_PASSWORD_WYZE3}@192.136.1.25/ch1#timeout=30
+  webrtc:
+    listen: ":8555"
+    candidates:
+      - "{SVC_FRIGATE_ADDR}:8555" # <--- enter frigate host IP here
+      - stun:8555
 cameras:
   phone_rtsp:
     ffmpeg:
@@ -84,21 +88,21 @@ cameras:
   office:
     ffmpeg:
       inputs:
-        - path: rtsp://127.0.0.1:8554/office
-          input_args: preset-rtsp-restream
+        - path: rtsp://127.0.0.1:8554/office?timeout=30
+          input_args: preset-rtsp-restream-low-latency
           roles:
             - record
-        - path: rtsp://127.0.0.1:8554/office_sub
-          input_args: preset-rtsp-restream
+        - path: rtsp://127.0.0.1:8554/office_sub?timeout=30
+          input_args: preset-rtsp-restream-low-latency
           roles:
             - audio
             - detect
       output_args:
-        record: preset-record-generic-audio-copy
+        record: preset-record-generic-audio-aac
     live:
       stream_name: office
-#    onvif:
-#      host: 192.168.1.25
-#      port: 80
-#      user: '{FRIGATE_RTSP_USER_WYZE3}'
-#      password: '{FRIGATE_RTSP_PASSWORD_WYZE3}'
+    onvif:
+      host: 192.168.1.25
+      port: 80
+      user: '{FRIGATE_RTSP_USER_WYZE3}'
+      password: '{FRIGATE_RTSP_PASSWORD_WYZE3}'
