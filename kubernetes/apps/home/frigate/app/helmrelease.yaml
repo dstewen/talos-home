@@ -89,6 +89,8 @@ spec:
     service:
       app:
         controller: frigate
+        annotations:
+          lbipam.cilium.io/ips: 192.168.10.237
         ports:
           http:
             port: *port
