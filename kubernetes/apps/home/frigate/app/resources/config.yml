@@ -54,10 +54,10 @@ go2rtc:
       - rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@192.168.1.13:8554/live
     phone_rtsp_sub:
       - rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@192.168.1.13:8554/live
-#    office:
-#      - rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@10.1.4.32:554/cam/realmonitor?channel=1&subtype=0&authbasic=64
-#    office_sub:
-#      - rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@10.1.4.32:554/cam/realmonitor?channel=1&subtype=1&authbasic=64
+    office:
+      - rtsp://{FRIGATE_RTSP_USER_WYZE3}:{FRIGATE_RTSP_PASSWORD_WYZE3}@192.168.1.25:554/ch0#timeout=30
+    office_sub:
+      - rtsp://{FRIGATE_RTSP_USER_WYZE3}:{FRIGATE_RTSP_PASSWORD_WYZE3}@192.136.1.25:554/ch1#timeout=30
 
 cameras:
   phone_rtsp:
@@ -81,28 +81,24 @@ cameras:
       height: 480
       fps: 10
 
-#  office:
-#    ffmpeg:
-#      inputs:
-#        - path: rtsp://127.0.0.1:8554/office
-#          input_args: preset-rtsp-restream
-#          roles:
-#            - record
-#        - path: rtsp://127.0.0.1:8554/office_sub
-#          input_args: preset-rtsp-restream
-#          roles:
-#            - audio
-#            - detect
-#      output_args:
-#        record: preset-record-generic-audio-copy
-#    live:
-#      stream_name: office
-#    detect:
-#      width: 640
-#      height: 480
-#      fps: 10
-#    onvif:
-#      host: 10.1.4.32
-#      port: 80
-#      user: '{FRIGATE_RTSP_USER}'
-#      password: '{FRIGATE_RTSP_PASSWORD}'
+  office:
+    ffmpeg:
+      inputs:
+        - path: rtsp://127.0.0.1:8554/office?timeout=30
+          input_args: preset-rtsp-restream
+          roles:
+            - record
+        - path: rtsp://127.0.0.1:8554/office_sub?timeout=30
+          input_args: preset-rtsp-restream
+          roles:
+            - audio
+            - detect
+      output_args:
+        record: preset-record-generic-audio-copy
+    live:
+      stream_name: office
+    onvif:
+      host: 192.168.1.25
+      port: 80
+      user: '{FRIGATE_RTSP_USER_WYZE3}'
+      password: '{FRIGATE_RTSP_PASSWORD_WYZE3}'
