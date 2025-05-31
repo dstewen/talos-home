@@ -55,9 +55,9 @@ go2rtc:
     phone_rtsp_sub:
       - rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@192.168.1.13:8554/live
     office:
-      - rtsp://{FRIGATE_RTSP_USER_WYZE3}:{FRIGATE_RTSP_PASSWORD_WYZE3}@192.168.1.25:554/ch0#timeout=30
+      - rtsp://{FRIGATE_RTSP_USER_WYZE3}:{FRIGATE_RTSP_PASSWORD_WYZE3}@192.168.1.25:554/ch0
     office_sub:
-      - rtsp://{FRIGATE_RTSP_USER_WYZE3}:{FRIGATE_RTSP_PASSWORD_WYZE3}@192.136.1.25:554/ch1#timeout=30
+      - rtsp://{FRIGATE_RTSP_USER_WYZE3}:{FRIGATE_RTSP_PASSWORD_WYZE3}@192.136.1.25:554/ch1
 
 cameras:
   phone_rtsp:
@@ -84,11 +84,11 @@ cameras:
   office:
     ffmpeg:
       inputs:
-        - path: rtsp://127.0.0.1:8554/office?timeout=30
+        - path: rtsp://127.0.0.1:8554/office
           input_args: preset-rtsp-restream
           roles:
             - record
-        - path: rtsp://127.0.0.1:8554/office_sub?timeout=30
+        - path: rtsp://127.0.0.1:8554/office_sub
           input_args: preset-rtsp-restream
           roles:
             - audio
