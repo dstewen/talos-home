@@ -65,6 +65,7 @@ go2rtc:
       - stun:8555
 cameras:
   phone_rtsp:
+    enabled: true
     ffmpeg:
       inputs:
         - path: rtsp://127.0.0.1:8554/phone_rtsp
@@ -86,6 +87,7 @@ cameras:
       fps: 10
 
   office:
+    enabled: true
     ffmpeg:
       inputs:
         - path: rtsp://127.0.0.1:8554/office?timeout=30
