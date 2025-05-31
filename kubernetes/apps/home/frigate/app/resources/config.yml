@@ -1,5 +1,5 @@
 ---
-version: 0.14
+version: "0.14"
 mqtt:
   host: 192.168.10.228
   topic_prefix: frigate
