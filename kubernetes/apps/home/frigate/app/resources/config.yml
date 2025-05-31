@@ -61,7 +61,7 @@ go2rtc:
   webrtc:
     listen: ":8555"
     candidates:
-      - ${SVC_FRIGATE_ADDR}:8555 # <--- enter frigate host IP here
+      - 192.168.10.238:8555 # <--- enter frigate host IP here
       - stun:8555
 cameras:
   phone_rtsp:
