@@ -21,6 +21,11 @@ spec:
       namespace: rook-ceph
     - name: volsync
       namespace: volsync
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2
+      kind: HelmRelease
+      name: *app
+      namespace: *namespace
   path: ./kubernetes/apps/home/frigate/app
   prune: true
   sourceRef:
