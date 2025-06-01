@@ -51,15 +51,15 @@ snapshots:
 go2rtc:
   streams:
     phone_rtsp:
-      - rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@192.168.1.13:8554/live
+      - rtsp://{FRIGATE_RTSP_USER_PHONEAPP}:{FRIGATE_RTSP_PASSWORD_PHONEAPP}@{FRIGATE_RTSP_HOST_PHONE_IP}:8554/live
     phone_rtsp_sub:
-      - rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@192.168.1.13:8554/live
+      - rtsp://{FRIGATE_RTSP_USER_PHONEAPP}:{FRIGATE_RTSP_PASSWORD_PHONEAPP}@{FRIGATE_RTSP_HOST_PHONE_IP}:8554/live
     office:
-      - rtsp://{FRIGATE_RTSP_USER_WYZE3}:{FRIGATE_RTSP_PASSWORD_WYZE3}@192.168.1.25:554/ch0#timeout=30
+      - rtsp://{FRIGATE_RTSP_USER_WYZE3}:{FRIGATE_RTSP_PASSWORD_WYZE3}@{FRIGATE_RTSP_HOST_WYZE3}:554/ch0#timeout=30
     office_sub:
-      - rtsp://{FRIGATE_RTSP_USER_WYZE3}:{FRIGATE_RTSP_PASSWORD_WYZE3}@192.136.1.25:554/ch1#timeout=30
+      - rtsp://{FRIGATE_RTSP_USER_WYZE3}:{FRIGATE_RTSP_PASSWORD_WYZE3}@{FRIGATE_RTSP_HOST_WYZE3}:554/ch1#timeout=30
   webrtc:
-    listen: ":8555"
+#    listen: ":8555"
     candidates:
       - 192.168.10.238:8555 # <--- enter frigate host IP here
       - stun:8555
