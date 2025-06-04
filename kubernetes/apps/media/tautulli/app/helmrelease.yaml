@@ -22,11 +22,11 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-  dependsOn:
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
-    - name: volsync
-      namespace: storage
+#  dependsOn:
+#    - name: rook-ceph-cluster
+#      namespace: rook-ceph
+#    - name: volsync
+#      namespace: storage
   values:
     controllers:
       tautulli:
@@ -38,7 +38,7 @@ spec:
               repository: ghcr.io/home-operations/tautulli
               tag: 2.15.2@sha256:4e7d75c9fe8f96ae766269fb451fc5ad215451b30a463c11142c492512c021cd
             env:
-              TZ: ${TIMEZONE}
+              TZ: Australia/Melbourne
             command: ["/usr/local/bin/python", "Tautulli.py"]
             args: [
               "--config", "/config/config.ini",
