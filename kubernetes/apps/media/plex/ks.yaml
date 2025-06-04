@@ -15,6 +15,12 @@ spec:
   dependsOn:
     - name: external-secrets-stores
       namespace: external-secrets
+    - name: intel-device-plugin-gpu
+      namespace: kube-system
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
+    - name: volsync
+      namespace: volsync
   path: ./kubernetes/apps/media/plex/app
   prune: true
   sourceRef:
