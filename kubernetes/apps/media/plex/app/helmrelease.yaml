@@ -98,6 +98,14 @@ spec:
     ingress:
       app:
         annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Video
+          gethomepage.dev/name: Plex
+          gethomepage.dev/icon: plex.png
+          gethomepage.dev/description: "Plex Server Home Talos"
+#          gethomepage.dev/widget.type: overseerr
+#          gethomepage.dev/widget.url: http://overseerr.media:80
+#          gethomepage.dev/widget.key: "MTczMDYwNTU2MzE1MzkzZGVlZWE3LTNkMTMtNDkzZi05ZTEzLWVhNmZkMGRmZmFlZA=="
           external-dns.alpha.kubernetes.io/target: external.davidstewen.com
           nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
         className: external
