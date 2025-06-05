@@ -144,10 +144,10 @@ spec:
       autoscaling:
         enabled: true
         minReplicas: 2
-        maxReplicas: 4
+        maxReplicas: 3
       resources:
         requests:
-          cpu: 200m
+          cpu: 100m
           memory: 200M
         limits:
           memory: 700M
