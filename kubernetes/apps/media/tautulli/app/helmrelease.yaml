@@ -38,19 +38,31 @@ spec:
               repository: ghcr.io/home-operations/tautulli
               tag: 2.15.2@sha256:4e7d75c9fe8f96ae766269fb451fc5ad215451b30a463c11142c492512c021cd
             env:
+              TAUTULLI__PORT: &port 8181
               TZ: Australia/Melbourne
-            command: ["/usr/local/bin/python", "Tautulli.py"]
-            args: [
-              "--config", "/config/config.ini",
-              "--datadir", "/config",
-              "--port", "80"
-            ]
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /status
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
             resources:
               requests:
-                cpu: 20m
+                cpu: 10m
                 memory: 100M
               limits:
-                memory: 300M
+                memory: 512M
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -64,7 +76,7 @@ spec:
         controller: *app
         ports:
           http:
-            port: 80
+            port: *port
     ingress:
       app:
         className: external
@@ -87,4 +99,17 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: *app
+        existingClaim: ${VOLSYNC_CLAIM}
+      config-cache:
+        existingClaim: tautulli-cache
+        globalMounts:
+          - path: /config/cache
+      tmpfs:
+        type: emptyDir
+        advancedMounts:
+          tautulli:
+            app:
+              - path: /config/logs
+                subPath: logs
+              - path: /tmp
+                subPath: tmp
