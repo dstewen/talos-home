@@ -124,23 +124,15 @@ spec:
           - "id.${SECRET_DOMAIN}"
         https: false
     worker:
-#      affinity:
-#        nodeAffinity:
-#          requiredDuringSchedulingIgnoredDuringExecution:
-#            nodeSelectorTerms:
-#            - matchExpressions:
-#              - key: node-role.kubernetes.io/worker
-#                operator: In
-#                values:
-#                - worker
-#          preferredDuringSchedulingIgnoredDuringExecution:
-#          - weight: 50
-#            preference:
-#              matchExpressions:
-#              - key: kubernetes.io/arch
-#                operator: In
-#                values:
-#                - arm64
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
       autoscaling:
         enabled: true
         minReplicas: 2
