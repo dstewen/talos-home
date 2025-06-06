@@ -31,11 +31,6 @@ spec:
   uninstall:
     keepHistory: false
 
-  dependsOn:
-    - name: dragonfly-operator
-      namespace: database
-#    - name: immich-typesense
-#      namespace: media
   values:
 #    defaultPodOptions:
 #      affinity:
@@ -67,8 +62,8 @@ spec:
         initContainers:
           01-init-db:
             image:
-              repository: ghcr.io/onedr0p/postgres-init
-              tag: 16.8
+              repository: ghcr.io/home-operations/postgres-init
+              tag: 17.5.0
 
             envFrom: &envFrom
               - configMapRef:
