@@ -15,15 +15,15 @@ spec:
   enableSuperuserAccess: true
 # Note: Bootstrap is needed when recovering from an existing cnpg cluster
   bootstrap:
-#    recovery:
-#      source: &previousCluster postgres17-v18
-    initdb:
-      import:
-        type: monolith
-        databases: ["*"]
-        roles: ["*"]
-        source:
-          externalCluster: cnpg16
+    recovery:
+      source: &previousCluster postgres17-v1
+#    initdb:
+#      import:
+#        type: monolith
+#        databases: ["*"]
+#        roles: ["*"]
+#        source:
+#          externalCluster: cnpg16
   postgresql:
     parameters:
       max_connections: "600"
@@ -47,7 +47,7 @@ spec:
         compression: bzip2
       destinationPath: s3://cnpg-backups-new/
       endpointURL: http://192.168.10.198:9000
-      serverName: &currentCluster postgres17-v1
+      serverName: &currentCluster postgres17-v2
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret
@@ -57,28 +57,28 @@ spec:
           key: aws-secret-access-key
 # Note: externalClusters is needed when recovering from an existing cnpg cluster
   externalClusters:
-#    - name: *previousCluster
-#      barmanObjectStore:
-#        wal:
-#          compression: bzip2
-#          maxParallel: 8
-#        destinationPath: s3://cnpg-backups-new/
-#        endpointURL: http://192.168.10.198:9000
-#        s3Credentials:
-#          accessKeyId:
-#            name: cloudnative-pg-secret
-#            key: aws-access-key-id
-#          secretAccessKey:
-#            name: cloudnative-pg-secret
-#            key: aws-secret-access-key
-    - name: cnpg16
-      connectionParameters:
-        host: postgres16-rw.database.svc.cluster.local
-        user: postgres
-        dbname: postgres
-      password:
-        name: cloudnative-pg-secret
-        key: password
+    - name: *previousCluster
+      barmanObjectStore:
+        wal:
+          compression: bzip2
+          maxParallel: 8
+        destinationPath: s3://cnpg-backups-new/
+        endpointURL: http://192.168.10.198:9000
+        s3Credentials:
+          accessKeyId:
+            name: cloudnative-pg-secret
+            key: aws-access-key-id
+          secretAccessKey:
+            name: cloudnative-pg-secret
+            key: aws-secret-access-key
+#    - name: cnpg16
+#      connectionParameters:
+#        host: postgres16-rw.database.svc.cluster.local
+#        user: postgres
+#        dbname: postgres
+#      password:
+#        name: cloudnative-pg-secret
+#        key: password
 #  affinity:
 #    nodeAffinity:
 #      requiredDuringSchedulingIgnoredDuringExecution:
