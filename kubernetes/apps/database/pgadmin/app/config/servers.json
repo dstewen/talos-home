@@ -33,9 +33,9 @@
       "TunnelAuthentication": 0
     },
     "3": {
-      "Name": "postgres16-rw",
+      "Name": "postgres17-rw",
       "Group": "Servers",
-      "Host": "postgres16-rw.database.svc.cluster.local",
+      "Host": "postgres17-rw.database.svc.cluster.local",
       "Port": 5432,
       "MaintenanceDB": "postgres",
       "Username": "postgres",
