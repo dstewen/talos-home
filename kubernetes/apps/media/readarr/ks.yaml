@@ -7,10 +7,12 @@ metadata:
   namespace: &namespace media
 spec:
   dependsOn:
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
+    - name: cloudnative-pg-cluster17
+      namespace: database
     - name: external-secrets-stores
       namespace: external-secrets
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
     - name: volsync
       namespace: volsync
   targetNamespace: *namespace
