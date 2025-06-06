@@ -6,8 +6,8 @@ metadata:
   name: postgres16
 spec:
   instances: 3
-#  imageName: ghcr.io/cloudnative-pg/postgresql:16.1-6
-  imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:16.8-v0.4.0
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.9
+#  imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:16.8-v0.4.0
   primaryUpdateStrategy: unsupervised
   storage:
     size: 20Gi
@@ -18,14 +18,14 @@ spec:
 # Note: Bootstrap is needed when recovering from an existing cnpg cluster
   bootstrap:
     recovery:
-      source: &previousCluster postgres16-v18
+      source: &previousCluster postgres16-v19
   postgresql:
     parameters:
       max_connections: "600"
       max_slot_wal_keep_size: 10GB
       shared_buffers: 512MB
-    shared_preload_libraries:
-      - "vectors.so"
+#    shared_preload_libraries:
+#      - "vectors.so"
   resources:
     requests:
       memory: "1Gi"
@@ -44,7 +44,7 @@ spec:
         compression: bzip2
       destinationPath: s3://cnpg-backups-new/
       endpointURL: http://192.168.10.198:9000
-      serverName: &currentCluster postgres16-v19
+      serverName: &currentCluster postgres16-v20
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret
