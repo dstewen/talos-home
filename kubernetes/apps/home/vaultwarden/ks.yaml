@@ -17,10 +17,12 @@ spec:
     name: flux-system
     namespace: flux-system
   dependsOn:
-    - name: cloudnative-pg-cluster
+    - name: cloudnative-pg-cluster17
       namespace: database
     - name: external-secrets-stores
       namespace: external-secrets
+    - name: volsync
+      namespace: volsync
   interval: 30m
   retryInterval: 1m
   timeout: 5m
