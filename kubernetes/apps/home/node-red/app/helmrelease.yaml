@@ -100,7 +100,7 @@ spec:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/group: Home
           gethomepage.dev/name: node-red
-          gethomepage.dev/icon: si-nodered
+          gethomepage.dev/icon: node-red.png
           gethomepage.dev/href: https://nr.${SECRET_DOMAIN}
 #          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
         hosts:
