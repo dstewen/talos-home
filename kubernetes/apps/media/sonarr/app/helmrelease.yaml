@@ -45,8 +45,8 @@ spec:
               tag: 4.0.14.2938@sha256:5126f7ae94745a8e58e6963e1f67e905766c096832eff08b0678355ad0cdecee
             env:
               TZ: Australia/Melbourne
-              SONARR__AUTHENTICATION_METHOD: External
-              SONARR__AUTHENTICATION_REQUIRED: DisabledForLocalAddresses
+              SONARR__AUTH_METHOD: External
+              SONARR__AUTH_REQUIRED: DisabledForLocalAddresses
               SONARR__INSTANCE_NAME: Sonarr
               SONARR__PORT: &port 80
               SONARR__LOG_LEVEL: info
