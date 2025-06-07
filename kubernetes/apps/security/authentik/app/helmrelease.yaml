@@ -81,7 +81,12 @@ spec:
       autoscaling:
         enabled: true
         minReplicas: 1
-#        maxReplicas: 3
+        maxReplicas: 3
+        targetCPUUtilizationPercentage: 50
+      pdb:
+        enabled: true
+        minAvailable: 1
+        maxUnavailable: 1
       initContainers:
         - name: init-db
           image: ghcr.io/home-operations/postgres-init:17.5.0@sha256:e0c87ce7df39d06b93f27cf2cc6a056611f13faaa88cc07ab4dc8bf7a85d0b11
@@ -97,9 +102,10 @@ spec:
       resources:
         requests:
           cpu: 100m
-          memory: 200M
+          memory: 1Gi
         limits:
-          memory: 1000M
+          cpu: 2000m
+          memory: 2Gi
       ingress:
         enabled: true
         ingressClassName: internal
@@ -134,16 +140,22 @@ spec:
                 - amd64
       autoscaling:
         enabled: true
-        minReplicas: 1
-#        maxReplicas: 3
+        minReplicas: 2
+        maxReplicas: 3
+        targetCPUUtilizationPercentage: 50
+      pdb:
+        enabled: true
+        minAvailable: 1
+        maxUnavailable: 1
       startupProbe:
         initialDelaySeconds: 60
       resources:
         requests:
-          cpu: 100m
+          cpu: 500m
           memory: 200M
         limits:
-          memory: 700M
+          cpu: 2000m
+          memory: 2Gi
       metrics:
         serviceMonitor:
           enabled: true
