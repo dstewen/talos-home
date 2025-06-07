@@ -111,7 +111,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: *app
+        existingClaim: ${VOLSYNC_CLAIM}
       data:
         enabled: true
         type: nfs
