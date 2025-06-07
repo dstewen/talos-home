@@ -149,7 +149,7 @@ data:
               key: {{HOMEPAGE_VAR_HASS_API_TOKEN}}
         - PiHole:
             href: http://192.168.10.195
-            icon: mdi-pihole
+            icon: pi-hole.png
             widget:
               type: pihole
               url: http://192.168.10.195
