@@ -22,11 +22,6 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-  dependsOn:
-#    - name: rook-ceph-cluster
-#      namespace: rook-ceph
-    - name: local-path-provisioner
-      namespace: storage
   values:
     controllers:
       radarr:
@@ -87,23 +82,23 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
         supplementalGroups: [10000]
         seccompProfile: { type: RuntimeDefault }
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: node-role.kubernetes.io/worker
-                operator: In
-                values:
-                - worker
-          preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 1
-            preference:
-              matchExpressions:
-              - key: kubernetes.io/arch
-                operator: In
-                values:
-                - arm64
+#      affinity:
+#        nodeAffinity:
+#          requiredDuringSchedulingIgnoredDuringExecution:
+#            nodeSelectorTerms:
+#            - matchExpressions:
+#              - key: node-role.kubernetes.io/worker
+#                operator: In
+#                values:
+#                - worker
+#          preferredDuringSchedulingIgnoredDuringExecution:
+#          - weight: 1
+#            preference:
+#              matchExpressions:
+#              - key: kubernetes.io/arch
+#                operator: In
+#                values:
+#                - arm64
 
     service:
       app:
