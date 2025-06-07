@@ -50,10 +50,11 @@ snapshots:
 
 go2rtc:
   streams:
-    phone_rtsp:
-      - rtsp://{FRIGATE_RTSP_USER_PHONEAPP}:{FRIGATE_RTSP_PASSWORD_PHONEAPP}@{FRIGATE_RTSP_HOST_PHONE_IP}:8554/live
-    phone_rtsp_sub:
-      - rtsp://{FRIGATE_RTSP_USER_PHONEAPP}:{FRIGATE_RTSP_PASSWORD_PHONEAPP}@{FRIGATE_RTSP_HOST_PHONE_IP}:8554/live
+# Android RTSP Server (IP Camera Pro)
+#    phone_rtsp:
+#      - rtsp://{FRIGATE_RTSP_USER_PHONEAPP}:{FRIGATE_RTSP_PASSWORD_PHONEAPP}@{FRIGATE_RTSP_HOST_PHONE_IP}:8554/live
+#    phone_rtsp_sub:
+#      - rtsp://{FRIGATE_RTSP_USER_PHONEAPP}:{FRIGATE_RTSP_PASSWORD_PHONEAPP}@{FRIGATE_RTSP_HOST_PHONE_IP}:8554/live
     office:
       - rtsp://{FRIGATE_RTSP_USER_WYZE3}:{FRIGATE_RTSP_PASSWORD_WYZE3}@{FRIGATE_RTSP_HOST_WYZE3}:554/ch0#timeout=30
     office_sub:
@@ -64,28 +65,27 @@ go2rtc:
       - 192.168.10.238:8555 # <--- enter frigate host IP here
       - stun:8555
 cameras:
-  phone_rtsp:
-    enabled: true
-    ffmpeg:
-      inputs:
-        - path: rtsp://127.0.0.1:8554/phone_rtsp
-          input_args: preset-rtsp-restream
-          roles:
-            - record
-        - path: rtsp://127.0.0.1:8554/phone_rtsp_sub
-          input_args: preset-rtsp-restream
-          roles:
-            - audio
-            - detect
-      output_args:
-        record: preset-record-generic-audio-copy
-    live:
-      stream_name: phone_rtsp
-    detect:
-      width: 640
-      height: 480
-      fps: 10
-
+#  phone_rtsp:
+#    enabled: true
+#    ffmpeg:
+#      inputs:
+#        - path: rtsp://127.0.0.1:8554/phone_rtsp
+#          input_args: preset-rtsp-restream
+#          roles:
+#            - record
+#        - path: rtsp://127.0.0.1:8554/phone_rtsp_sub
+#          input_args: preset-rtsp-restream
+#          roles:
+#            - audio
+#            - detect
+#      output_args:
+#        record: preset-record-generic-audio-copy
+#    live:
+#      stream_name: phone_rtsp
+#    detect:
+#      width: 640
+#      height: 480
+#      fps: 10
   office:
     enabled: true
     ffmpeg:
