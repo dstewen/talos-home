@@ -95,6 +95,8 @@ spec:
         enabled: true
         serviceMonitor:
           enabled: true
+      startupProbe:
+        initialDelaySeconds: 120
       resources:
         requests:
           cpu: 100m
@@ -137,6 +139,8 @@ spec:
         enabled: true
         minReplicas: 2
         maxReplicas: 3
+      startupProbe:
+        initialDelaySeconds: 120
       resources:
         requests:
           cpu: 100m
