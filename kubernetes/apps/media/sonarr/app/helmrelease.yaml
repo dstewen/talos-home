@@ -120,3 +120,10 @@ spec:
         path: /volume2/piNFS01/flux-cluster/media/
         globalMounts:
           - path: /data
+      media:
+        enabled: true
+        type: nfs
+        server: ${NAS_IP}
+        path: /volume2/piNFS01/flux-cluster/plex/media
+        globalMounts:
+          - path: /media
