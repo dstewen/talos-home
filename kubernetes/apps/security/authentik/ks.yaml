@@ -19,6 +19,8 @@ spec:
       namespace: security
     - name: dragonfly-cluster
       namespace: database
+    - name: smtp-relay
+      namespace: home
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2
       kind: HelmRelease
