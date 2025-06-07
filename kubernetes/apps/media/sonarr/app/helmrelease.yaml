@@ -94,6 +94,7 @@ spec:
           gethomepage.dev/widget.type: sonarr
           gethomepage.dev/widget.url: http://sonarr.media
           gethomepage.dev/widget.key: "{{`{{HOMEPAGE_VAR_SONARR_TOKEN}}`}}"
+          external-dns.alpha.kubernetes.io/target: internal.davidstewen.com
 #          nginx.ingress.kubernetes.io/configuration-snippet: |
 #            proxy_set_header Accept-Encoding "";
 #            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/sonarr/nord.css"></head>';
