@@ -48,7 +48,7 @@ spec:
               SONARR__AUTH_METHOD: External
               SONARR__AUTH_REQUIRED: DisabledForLocalAddresses
               SONARR__INSTANCE_NAME: Sonarr
-              SONARR__PORT: &port 80
+              SONARR__SERVER__PORT: &port 80
               SONARR__LOG_LEVEL: info
             envFrom: *envFrom
             resources:
