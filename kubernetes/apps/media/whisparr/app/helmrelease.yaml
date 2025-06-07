@@ -47,7 +47,7 @@ spec:
               WHISPARR__AUTH__REQUIRED: DisabledForLocalAddresses
               WHISPARR__LOG__DBENABLED: "False"
               WHISPARR__LOG__LEVEL: info
-              WHISPARR__SERVER__PORT: &port 80
+              WHISPARR__PORT: &port 80
               WHISPARR__UPDATE__BRANCH: develop
               TZ: Australia/Melbourne
             envFrom: *envFrom
