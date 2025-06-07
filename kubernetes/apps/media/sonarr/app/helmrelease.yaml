@@ -44,7 +44,7 @@ spec:
               repository: ghcr.io/home-operations/sonarr
               tag: 4.0.14.2938@sha256:5126f7ae94745a8e58e6963e1f67e905766c096832eff08b0678355ad0cdecee
             env:
-              TZ: ${TIMEZONE}
+              TZ: Australia/Melbourne
               SONARR__AUTHENTICATION_METHOD: External
               SONARR__AUTHENTICATION_REQUIRED: DisabledForLocalAddresses
               SONARR__INSTANCE_NAME: Sonarr
@@ -92,12 +92,12 @@ spec:
           gethomepage.dev/name: Sonarr
           gethomepage.dev/icon: sonarr.png
           gethomepage.dev/widget.type: sonarr
-          gethomepage.dev/widget.url: http://sonarr.downloads
+          gethomepage.dev/widget.url: http://sonarr.media
           gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_SONARR_TOKEN}}"
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/sonarr/nord.css"></head>';
-            sub_filter_once on;
+#          nginx.ingress.kubernetes.io/configuration-snippet: |
+#            proxy_set_header Accept-Encoding "";
+#            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/sonarr/nord.css"></head>';
+#            sub_filter_once on;
         hosts:
           - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
@@ -115,7 +115,7 @@ spec:
       data:
         enabled: true
         type: nfs
-        server: ${NAS_IP:=temp}
-        path: ${SECRET_NFS_DATA:=temp}
+        server: ${NAS_IP}
+        path: /volume2/piNFS01/flux-cluster/media/
         globalMounts:
           - path: /data
