@@ -140,7 +140,7 @@ spec:
                 - amd64
       autoscaling:
         enabled: true
-        minReplicas: 2
+        minReplicas: 1
         maxReplicas: 3
 #        targetCPUUtilizationPercentage: 50
       pdb:
