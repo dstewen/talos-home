@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: radarr
+  name: whisparr
 spec:
   interval: 30m
   chart:
@@ -24,7 +24,7 @@ spec:
       retries: 3
   values:
     controllers:
-      radarr:
+      whisparr:
         annotations:
           reloader.stakater.com/auto: "true"
         initContainers:
@@ -34,22 +34,22 @@ spec:
               tag: 17.5.0
             envFrom: &envFrom
               - secretRef:
-                  name: radarr-secret
+                  name: whisparr-secret
         containers:
           app:
             image:
-              repository: ghcr.io/home-operations/radarr
-              tag: 5.26.0.10051@sha256:9a9bbec11725e485a2cd0fb1bd199ec0c358aa7b09c81ae712c2cfb9d555fde5
+              repository: ghcr.io/home-operations/whisparr
+              tag: 2.0.0.987@sha256:c1be4ac64547304da7c734a28387819e67885273ebd4fccd8274675952f06eff
             env:
-              RADARR__APP__INSTANCENAME: Radarr
-              RADARR__APP__THEME: dark
-              RADARR__AUTH__METHOD: External
-              RADARR__AUTH__REQUIRED: DisabledForLocalAddresses
-              RADARR__LOG__DBENABLED: "False"
-              RADARR__LOG__LEVEL: info
-              RADARR__SERVER__PORT: &port 80
-              RADARR__UPDATE__BRANCH: develop
-              TZ: "${TIMEZONE}"
+              WHISPARR__APP__INSTANCENAME: Whisparr
+              WHISPARR__APP__THEME: dark
+              WHISPARR__AUTH__METHOD: External
+              WHISPARR__AUTH__REQUIRED: DisabledForLocalAddresses
+              WHISPARR__LOG__DBENABLED: "False"
+              WHISPARR__LOG__LEVEL: info
+              WHISPARR__SERVER__PORT: &port 80
+              WHISPARR__UPDATE__BRANCH: develop
+              TZ: Australia/Melbourne
             envFrom: *envFrom
             probes:
               liveness: &probes
@@ -102,7 +102,7 @@ spec:
 
     service:
       app:
-        controller: radarr
+        controller: whisparr
         ports:
           http:
             port: *port
@@ -120,10 +120,10 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: radarr
+        existingClaim: whisparr
       scripts:
         type: configMap
-        name: radarr-configmap
+        name: whisparr-configmap
         defaultMode: 0775
         globalMounts:
           - path: /scripts/pushover-notify.sh
