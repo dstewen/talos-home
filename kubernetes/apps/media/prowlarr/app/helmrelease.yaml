@@ -97,7 +97,7 @@ spec:
           gethomepage.dev/icon: prowlarr.png
           gethomepage.dev/widget.type: prowlarr
           gethomepage.dev/widget.url: http://prowlarr.media.svc.cluster.local:9696
-          gethomepage.dev/widget.key: "{{`{{PROWLARR__AUTH__APIKEY}}`}}"
+          gethomepage.dev/widget.key: ${PROWLARR__AUTH__APIKEY}
 #          nginx.ingress.kubernetes.io/configuration-snippet: |
 #            proxy_set_header Accept-Encoding "";
 #            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/prowlarr/nord.css"></head>';
