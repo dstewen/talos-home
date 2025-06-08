@@ -93,13 +93,13 @@ spec:
       app:
         annotations:
           gethomepage.dev/enabled: "true"
-          gethomepage.dev/group: Video
+          gethomepage.dev/group: Downloads
           gethomepage.dev/name: Overseerr
           gethomepage.dev/icon: overseerr.png
           gethomepage.dev/description: Media Request Management
-#          gethomepage.dev/widget.type: overseerr
-#          gethomepage.dev/widget.url: http://overseerr.media:80
-#          gethomepage.dev/widget.key: "MTczMDYwNTU2MzE1MzkzZGVlZWE3LTNkMTMtNDkzZi05ZTEzLWVhNmZkMGRmZmFlZA=="
+          gethomepage.dev/widget.type: overseerr
+          gethomepage.dev/widget.url: http://overseerr.media:80
+          gethomepage.dev/widget.key: "{{`{{HOMEPAGE_VAR_SONARR_TOKEN}}`}}"
           external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
         className: internal
         hosts:
