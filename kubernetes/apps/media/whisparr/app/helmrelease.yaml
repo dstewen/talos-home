@@ -109,6 +109,11 @@ spec:
     ingress:
       app:
         annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Adult Video
+          gethomepage.dev/name: Whisparr
+          gethomepage.dev/icon: whisparr.png
+          gethomepage.dev/description: Whisparr Adult Content
           external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
         className: internal
         hosts:
