@@ -24,7 +24,7 @@ spec:
       retries: 3
   values:
     controllers:
-      radarr:
+      radarr-uhd:
         annotations:
           reloader.stakater.com/auto: "true"
         initContainers:
@@ -34,7 +34,7 @@ spec:
               tag: 17.5.0
             envFrom: &envFrom
               - secretRef:
-                  name: radarr-secret
+                  name: radarr-uhd-secret
         containers:
           app:
             image:
@@ -102,7 +102,7 @@ spec:
 
     service:
       app:
-        controller: radarr
+        controller: radarr-uhd
         ports:
           http:
             port: *port
@@ -120,10 +120,10 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: radarr
+        existingClaim: radarr-uhd
       scripts:
         type: configMap
-        name: radarr-configmap
+        name: radarr-uhd-configmap
         defaultMode: 0775
         globalMounts:
           - path: /scripts/pushover-notify.sh
