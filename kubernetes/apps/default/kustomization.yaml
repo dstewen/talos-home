@@ -8,5 +8,5 @@ components:
 resources:
   - ./echo-server/ks.yaml
   - ./hajimari/ks.yaml
-  - ./homepage/ks.yaml
+#  - ./homepage/ks.yaml
 #  - ./misc-ingress/ks.yaml
