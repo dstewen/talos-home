@@ -18,7 +18,7 @@
       "kube-system": "kubernetes",
       "media": "video",
       "monitoring": "event",
-      "networking": "connection",
+      "network": "connection",
       "openebs-system": "base",
       "rook-ceph": "dump",
       "selfhosted": "server",
