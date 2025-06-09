@@ -9,7 +9,7 @@ resources:
   # Flux-Kustomizations
 #  - _pvc
 #  - ./arr-misc/ks.yaml
-#  - ./bazarr/ks.yaml
+  - ./bazarr/ks.yaml
 #  - ./calibre/ks.yaml
 #  - ./calibre-web/ks.yaml
 #  - ./immich/ks.yaml
