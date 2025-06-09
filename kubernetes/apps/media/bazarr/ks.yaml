@@ -17,6 +17,8 @@ spec:
       namespace: rook-ceph
     - name: volsync
       namespace: volsync
+  components:
+    - ../../../../flux/components/volsync
   path: ./kubernetes/apps/media/bazarr/app
   prune: true
   sourceRef:
