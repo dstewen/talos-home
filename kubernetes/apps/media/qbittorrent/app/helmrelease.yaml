@@ -154,5 +154,5 @@ spec:
         server: 192.168.10.15
         path: /volume2/piNFS01/flux-cluster/media/downloads
         globalMounts:
-          - path: /media/downloads/qbittorrent
-            subPath: downloads/qbittorrent
+          - path: /media/downloads
+            readOnly: false
