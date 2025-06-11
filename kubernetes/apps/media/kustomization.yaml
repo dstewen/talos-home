@@ -20,8 +20,8 @@ resources:
   - ./plex/ks.yaml
   - ./prowlarr/ks.yaml
   - ./qbittorrent/ks.yaml
-#  - ./radarr/ks.yaml
-#  - ./radarr-uhd/ks.yaml
+  - ./radarr/ks.yaml
+  - ./radarr-uhd/ks.yaml
 #  - ./readarr/ks.yaml
 #  - ./readarr-audiobooks/ks.yaml
 #  - ./sabnzbd/ks.yaml
