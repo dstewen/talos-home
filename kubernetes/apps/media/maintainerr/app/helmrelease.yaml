@@ -81,6 +81,10 @@ spec:
     ingress:
       app:
         annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Downloads
+          gethomepage.dev/name: Maintainerr
+          gethomepage.dev/icon: maintainerr.png
           external-dns.alpha.kubernetes.io/target: "internal.${SECRET_DOMAIN}"
         className: internal
         hosts:
