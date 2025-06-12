@@ -131,12 +131,7 @@ spec:
           - hosts:
               - *host
     persistence:
-      tmpfs:
+      config:
+        existingClaim: prowlarr
+      tmp:
         type: emptyDir
-        advancedMounts:
-          prowlarr:
-            app:
-              - path: /config
-                subPath: config
-              - path: /tmp
-                subPath: tmp
