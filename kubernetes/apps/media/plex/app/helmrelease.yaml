@@ -138,7 +138,7 @@ spec:
       media:
         type: nfs
         server: 192.168.10.15
-        path: /volume2/piNFS01/flux-cluster/plex/media
+        path: /volume2/piNFS01/flux-cluster/media/plex/media
         globalMounts:
           - path: /media
             readOnly: false
