@@ -152,7 +152,7 @@ spec:
       media:
         type: nfs
         server: 192.168.10.15
-        path: /volume2/piNFS01/flux-cluster/media/torrents
+        path: /volume2/piNFS01/flux-cluster/media_new/torrents
         globalMounts:
           - path: /media/torrents
             readOnly: false
