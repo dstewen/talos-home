@@ -129,13 +129,7 @@ spec:
       config:
         enabled: true
         existingClaim: ${VOLSYNC_CLAIM}
-      data:
-        enabled: true
-        type: nfs
-        server: ${NAS_IP}
-        path: /volume2/piNFS01/flux-cluster/media/
-        globalMounts:
-          - path: /data
+
       media:
         enabled: true
         type: nfs
@@ -143,3 +137,13 @@ spec:
         path: /volume2/piNFS01/flux-cluster/media_new
         globalMounts:
           - path: /media
+
+      tmpfs:
+        type: emptyDir
+        advancedMounts:
+          sonarr:
+            app:
+              - path: /config/logs
+                subPath: logs
+              - path: /tmp
+                subPath: tmp
