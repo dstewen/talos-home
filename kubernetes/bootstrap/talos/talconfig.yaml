@@ -354,7 +354,43 @@ nodes:
 #              - network: "192.168.30.0/24"
 #                gateway: "192.168.30.1"
 #                metric: 4096
-
+  - hostname: "yellow"
+    ipAddress: "192.168.10.84"
+    installDisk: "/dev/disk/by-id/nvme-WD_Blue_SN570_500GB_220628800737"
+    machineSpec:
+      secureboot: false
+    talosImageURL: factory.talos.dev/installer/d62d27140eb15f9b984bb8277c9f4bab1ed83435edc09afa553f075ef323f103
+    controlPlane: false
+    networkInterfaces:
+        #bond0
+      - interface: bond0
+        bond:
+          mode: active-backup
+          deviceSelectors:
+            - hardwareAddr: "e4:5f:01:ec:16:ab"
+        dhcp: false
+        addresses:
+          - "192.168.10.84/24"
+        routes:
+          - network: 0.0.0.0/0
+            gateway: "192.168.10.1"
+            metric: 1
+        mtu: 1500
+#        vlans:
+#          - vlanId: 40
+#            mtu: 1500
+#            addresses: [ "172.16.20.38/24" ]
+#            routes:
+#              - network: "172.16.20.0/24"
+#                gateway: "172.16.20.1"
+#                metric: 4097
+#          - vlanId: 30
+#            mtu: 1500
+#            addresses: [ "192.168.30.38/24" ]
+#            routes:
+#              - network: "192.168.30.0/24"
+#                gateway: "192.168.30.1"
+#                metric: 4096
 # Global patches
 patches:
   - "@./patches/global/machine-files.yaml"
