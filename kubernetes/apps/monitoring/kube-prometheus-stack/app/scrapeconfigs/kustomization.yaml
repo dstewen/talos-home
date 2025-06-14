@@ -8,4 +8,5 @@ resources:
 #  - ./arc-listener-scrape.yaml
 #  - ./rook-ceph-scrape.yaml
   - ./minecraft-prometheus-exporter-scrape.yaml
+  - ./opnsense.yaml
 #  - ./proxmox-node-exporter-scrape.yaml
