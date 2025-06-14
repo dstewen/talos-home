@@ -50,30 +50,25 @@ nodes:
           lacpRate: fast
           miimon: 1000
         dhcp: false
-        addresses:
-          - "192.168.10.51/24"
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "192.168.10.1"
-            metric: 1
         mtu: 1500
-        vip:
-          ip: "192.168.10.254"
-#        vlans:
-#          - vlanId: 40
-#            mtu: 1500
-#            addresses: [ "172.16.20.51/24" ]
-#            routes:
-#              - network: "172.16.20.0/24"
-#                gateway: "172.16.20.1"
-#                metric: 4097
-#          - vlanId: 30
-#            mtu: 1500
-#            addresses: [ "192.168.30.51/24" ]
-#            routes:
-#              - network: "192.168.30.0/24"
-#                gateway: "192.168.30.1"
-#                metric: 4096
+        vlans:
+          - vlanId: 10
+            mtu: 1500
+            addresses: [ "192.168.10.51/24" ]
+            routes:
+              - network: "0.0.0.0/0"
+                gateway: "192.168.10.1"
+                metric: 1
+            vip:
+              ip: 192.168.10.254
+# HomeLabServers_VLAN
+          - vlanId: 15
+            dhcp: false
+            mtu: 1500
+# K3S_Services_VLAN (Cilim_BGP)
+          - vlanId: 20
+            dhcp: false
+            mtu: 1500
     extensionServices:
       - name: nut-client
         configFiles:
@@ -108,30 +103,25 @@ nodes:
           lacpRate: fast
           miimon: 1000
         dhcp: false
-        addresses:
-          - "192.168.10.52/24"
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "192.168.10.1"
-            metric: 1
         mtu: 1500
-        vip:
-          ip: "192.168.10.254"
-#        vlans:
-#          - vlanId: 40
-#            mtu: 1500
-#            addresses: [ "172.16.20.52/24" ]
-#            routes:
-#              - network: "172.16.20.0/24"
-#                gateway: "172.16.20.1"
-#                metric: 4097
-#          - vlanId: 30
-#            mtu: 1500
-#            addresses: [ "192.168.30.52/24" ]
-#            routes:
-#              - network: "192.168.30.0/24"
-#                gateway: "192.168.30.1"
-#                metric: 4096
+        vlans:
+          - vlanId: 10
+            mtu: 1500
+            addresses: [ "192.168.10.52/24" ]
+            routes:
+              - network: "0.0.0.0/0"
+                gateway: "192.168.10.1"
+                metric: 1
+            vip:
+              ip: "192.168.10.254"
+# HomeLabServers_VLAN
+          - vlanId: 15
+            dhcp: false
+            mtu: 1500
+# K3S_Services_VLAN (Cilim_BGP)
+          - vlanId: 20
+            dhcp: false
+            mtu: 1500
     extensionServices:
       - name: nut-client
         configFiles:
@@ -166,39 +156,25 @@ nodes:
           lacpRate: fast
           miimon: 1000
         dhcp: false
-        addresses:
-          - "192.168.10.53/24"
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "192.168.10.1"
-            metric: 1
         mtu: 1500
-        vip:
-          ip: "192.168.10.254"
-#        vlans:
-#          - vlanId: 10
-#            mtu: 1500
-#            addresses: [ "192.168.10.53/24" ]
-#            routes:
-#              - network: "0.0.0.0/0"
-#                gateway: "192.168.10.1"
-#                metric: 1
-#            vip:
-#              ip: "192.168.10.254"
-#          - vlanId: 40
-#            mtu: 1500
-#            addresses: [ "172.16.20.53/24" ]
-#            routes:
-#              - network: "172.16.20.0/24"
-#                gateway: "172.16.20.1"
-#                metric: 4097
-#          - vlanId: 30
-#            mtu: 1500
-#            addresses: [ "192.168.30.53/24" ]
-#            routes:
-#              - network: "192.168.30.0/24"
-#                gateway: "192.168.30.1"
-#                metric: 4096
+        vlans:
+          - vlanId: 10
+            mtu: 1500
+            addresses: [ "192.168.10.53/24" ]
+            routes:
+              - network: "0.0.0.0/0"
+                gateway: "192.168.10.1"
+                metric: 1
+            vip:
+              ip: "192.168.10.254"
+# HomeLabServers_VLAN
+          - vlanId: 15
+            dhcp: false
+            mtu: 1500
+# K3S_Services_VLAN (Cilim_BGP)
+          - vlanId: 20
+            dhcp: false
+            mtu: 1500
     extensionServices:
       - name: nut-client
         configFiles:
@@ -221,13 +197,15 @@ nodes:
           deviceSelectors:
             - hardwareAddr: "e4:5f:01:ec:16:b4"
         dhcp: false
-        addresses:
-          - "192.168.10.35/24"
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "192.168.10.1"
-            metric: 1
         mtu: 1500
+        vlans:
+          - vlanId: 10
+            mtu: 1500
+            addresses: [ "192.168.10.35/24" ]
+            routes:
+              - network: "0.0.0.0/0"
+                gateway: "192.168.10.1"
+                metric: 1
 #        vlans:
 #          - vlanId: 40
 #            mtu: 1500
@@ -258,13 +236,15 @@ nodes:
           deviceSelectors:
             - hardwareAddr: "e4:5f:01:ec:16:a5"
         dhcp: false
-        addresses:
-          - "192.168.10.36/24"
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "192.168.10.1"
-            metric: 1
         mtu: 1500
+        vlans:
+          - vlanId: 10
+            mtu: 1500
+            addresses: [ "192.168.10.36/24" ]
+            routes:
+              - network: "0.0.0.0/0"
+                gateway: "192.168.10.1"
+                metric: 1
 #        vlans:
 #          - vlanId: 40
 #            mtu: 1500
@@ -295,13 +275,15 @@ nodes:
           deviceSelectors:
             - hardwareAddr: "e4:5f:01:ec:16:9c"
         dhcp: false
-        addresses:
-          - "192.168.10.37/24"
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "192.168.10.1"
-            metric: 1
         mtu: 1500
+        vlans:
+          - vlanId: 10
+            mtu: 1500
+            addresses: [ "192.168.10.37/24" ]
+            routes:
+              - network: "0.0.0.0/0"
+                gateway: "192.168.10.1"
+                metric: 1
 #        vlans:
 #          - vlanId: 40
 #            mtu: 1500
@@ -332,13 +314,15 @@ nodes:
           deviceSelectors:
             - hardwareAddr: "e4:5f:01:ec:16:5a"
         dhcp: false
-        addresses:
-          - "192.168.10.38/24"
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "192.168.10.1"
-            metric: 1
         mtu: 1500
+        vlans:
+          - vlanId: 10
+            mtu: 1500
+            addresses: [ "192.168.10.38/24" ]
+            routes:
+              - network: "0.0.0.0/0"
+                gateway: "192.168.10.1"
+                metric: 1
 #        vlans:
 #          - vlanId: 40
 #            mtu: 1500
