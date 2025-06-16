@@ -464,7 +464,7 @@ spec:
           - auto-gomemlimit
           - memory-snapshot-on-shutdown
           - new-service-discovery-manager
-        retention: 14d
+        retention: 28d
         retentionSize: 45GB
         storageSpec:
           volumeClaimTemplate:
