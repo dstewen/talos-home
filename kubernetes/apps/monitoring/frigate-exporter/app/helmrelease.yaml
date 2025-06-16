@@ -83,7 +83,7 @@ spec:
         controller: *app
         ports:
           metrics:
-            port: *port
+            port: 9100
     serviceMonitor:
       app:
         serviceName: *app
