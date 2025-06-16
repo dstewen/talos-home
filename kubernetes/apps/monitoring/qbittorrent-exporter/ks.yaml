@@ -13,6 +13,8 @@ spec:
   dependsOn:
     - name: external-secrets-stores
       namespace: external-secrets
+    - name: qbittorrent
+      namespace: media
   path: ./kubernetes/apps/monitoring/qbittorrent-exporter/app
   prune: true
   sourceRef:
