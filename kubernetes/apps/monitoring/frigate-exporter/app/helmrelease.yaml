@@ -36,9 +36,9 @@ spec:
             env:
               TZ: Australia/Melbourne
               FRIGATE_STATS_URL: http://frigate.home.svc.cluster.local:5000/api/stats
-            envFrom:
-              - secretRef:
-                  name: frigate-exporter-secret
+#            envFrom:
+#              - secretRef:
+#                  name: frigate-exporter-secret
             probes:
               liveness: &probes
                 enabled: true
