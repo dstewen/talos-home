@@ -74,5 +74,5 @@ spec:
             name: cluster-admin
           subjects:
             - identifier: system-upgrade-controller
-    serviceAccount:
-      system-upgrade-controller: {}
+#    serviceAccount:
+#      system-upgrade-controller: {}
