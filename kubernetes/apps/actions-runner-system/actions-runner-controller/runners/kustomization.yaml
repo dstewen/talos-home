@@ -6,3 +6,4 @@ resources:
 #  - ./container-runner.yaml
   - ./home-ops-amd64-runner.yaml
   - ./home-ops-arm64-runner.yaml
+  - ./rbac.yaml
