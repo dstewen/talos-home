@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: arc-home-ops-amd64
+  name: &name arc-home-ops-amd64
 spec:
   interval: 30m
   chart:
@@ -32,7 +32,14 @@ spec:
     minRunners: 1
     maxRunners: 2
     containerMode:
-      type: dind
+      type: kubernetes
+      kubernetesModeWorkVolumeClaim:
+        accessModes:
+          - ReadWriteOnce
+        storageClassName: openebs-hostpath
+        resources:
+          requests:
+            storage: 25Gi
     template:
       spec:
 #        affinity:
@@ -67,6 +74,22 @@ spec:
           - name: runner
             image: ghcr.io/joryirving/actions-runner:2.325.0@sha256:9c2e75b8581ae5856613a82a3d4a5f1ed5f0b1aed25df03b154e93a32a9cc54b
             command: ["/home/runner/run.sh"]
+            env:
+              - name: ACTIONS_RUNNER_REQUIRE_JOB_CONTAINER
+                value: "false"
+              - name: NODE
+                valueFrom:
+                  fieldRef:
+                    fieldPath: status.hostIP
+            volumeMounts:
+              - mountPath: /var/run/secrets/talos.dev
+                name: talos
+                readOnly: true
+        serviceAccountName: *name
+        volumes:
+          - name: talos
+            secret:
+              secretName: *name
 
 # Required for arc metrics
 #    listenerTemplate:
