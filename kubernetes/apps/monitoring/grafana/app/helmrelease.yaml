@@ -768,7 +768,8 @@ spec:
           # renovate: depName="Opnsense-Exporter"
           gnetId: 21113
           revision: 1
-          datasource: Prometheus
+          datasource:
+            - { name: DS_PROMETHEUS-K0, value: Prometheus }
         opnsense:
           # renovate: depName="Opnsense Dashboard"
           gnetId: 19366
