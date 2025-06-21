@@ -783,7 +783,8 @@ spec:
           # renovate: depName="Opnsense Basic Metrics"
           gnetId: 22248
           revision: 1
-          datasource: Prometheus
+          datasource:
+            - { name: DS_PROMETHEUS, value: Prometheus }
         opnsense-metrics:
           # renovate: depName="Opnsense Metrics"
           gnetId: 18957
