@@ -711,6 +711,11 @@ spec:
           revision: 1
           datasource:
             - { name: DS_PROMETHEUS, value: Prometheus }
+        frigate-dashboard:
+          # renovate: depName="Frigate Dashboard"
+          gnetId: 18226
+          revision: 9
+          datasource: Prometheus
         minecraft-server-stats-updated:
           # renovate: depName="Minecraft Server Stats - Updated"
           gnetId: 21835
@@ -721,6 +726,11 @@ spec:
           # renovate: depName="Node / CPU and System"
           gnetId: 22275
           revision: 1
+          datasource: Prometheus
+        node-exporter-bsd:
+          # renovate: depName="Node-Exporter BSD"
+          gnetId: 4260
+          revision: 15
           datasource: Prometheus
         node-fleet-overview:
           # renovate: depName="Node / Fleet Overview"
@@ -752,6 +762,31 @@ spec:
         node-temperature:
           # renovate: depName="Node Exporter / Node Temperatures"
           gnetId: 15202
+          revision: 1
+          datasource: Prometheus
+        opnsense-exporter:
+          # renovate: depName="Opnsense-Exporter"
+          gnetId: 21113
+          revision: 1
+          datasource: Prometheus
+        opnsense:
+          # renovate: depName="Opnsense Dashboard"
+          gnetId: 19366
+          revision: 1
+          datasource: Prometheus
+        opnsense-firewall:
+          # renovate: depName="Opnsense Firewall"
+          gnetId: 9291
+          revision: 1
+          datasource: Prometheus
+        opnsense-basic-metrics:
+          # renovate: depName="Opnsense Basic Metrics"
+          gnetId: 22248
+          revision: 1
+          datasource: Prometheus
+        opnsense-metrics:
+          # renovate: depName="Opnsense Metrics"
+          gnetId: 18957
           revision: 1
           datasource: Prometheus
       thanos:
