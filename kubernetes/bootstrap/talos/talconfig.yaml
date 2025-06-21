@@ -353,7 +353,7 @@ nodes:
 # Global patches
 patches:
   - "@./patches/global/machine-files.yaml"
-  - "@./patches/global/machine-hostdns.yaml" # Disabled - broke resolution with repos
+  - "@./patches/global/machine-hostdns.yaml"
   - "@./patches/global/machine-kubelet.yaml"
   - "@./patches/global/machine-network.yaml"
   - "@./patches/global/machine-sysctls.yaml"
@@ -365,16 +365,6 @@ controlPlane:
 
   schematic:
     customization:
-      extraKernelArgs:
-        - apparmor=0        # Less security, more speed
-        - init_on_alloc=0   # Less security, more speed
-        - init_on_free=0    # Less security, more speed
-        - intel_iommu=on    # PCI Passthrough
-        - iommu=pt          # PCI Passthrough
-        - mitigations=off   # Less security, more speed
-#        - net.ifnames=1     # Enable predictable NIC naming
-        - security=none     # Less security, more speed
-
       systemExtensions:
         officialExtensions:
           - siderolabs/gasket-driver    # Google Coral M.2
@@ -387,6 +377,7 @@ controlPlane:
     - "@./patches/controller/admission-controller-patch.yaml"
     - "@./patches/controller/cluster.yaml"
     - "@./patches/controller/enable-talos-api.yaml"
+    - "@./patches/controller/machine-install.yaml"
 
     # Configure NFS mount options
     - |

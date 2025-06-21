@@ -1,0 +1,16 @@
+machine:
+  install:
+    extraKernelArgs:
+      - -selinux # apparently needed for talos 1.10.x
+      - -init_on_alloc # Less security, more speed
+      - -init_on_free # Less security, more speed
+      - apparmor=0 # Less security, more speed
+      - i915.enable_guc=3                   # Meteor Lake CPU / iGPU
+      - init_on_alloc=0                     # Less security, faster puter
+      - init_on_free=0                      # Less security, faster puter
+      - intel_iommu=on # PCI Passthrough
+      - iommu=pt # PCI Passthrough
+      - mitigations=off # Less security, more speed
+      - security=none # Less security, more speed
+      - talos.auditd.disabled=1 # Less security, more speed
+#      - net.ifnames=1 # Enable predictable NIC naming
