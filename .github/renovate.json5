@@ -3,6 +3,7 @@
   "extends": [
     "config:recommended",
     "docker:enableMajor",
+    "github>dstewen/talos-home//.renovate/grafanaDashboards.json5",
     ":automergeBranch",
     ":dependencyDashboard",
     ":disableRateLimiting",
