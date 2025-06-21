@@ -773,7 +773,7 @@ spec:
         opnsense:
           # renovate: depName="Opnsense Dashboard"
           gnetId: 19366
-          revision: 1
+          revision: 5
           datasource:
             - { name: DS_PROMETHEUS, value: Prometheus }
         opnsense-firewall:
