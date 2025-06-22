@@ -715,7 +715,8 @@ spec:
           # renovate: depName="Frigate Dashboard"
           gnetId: 18226
           revision: 9
-          datasource: Prometheus
+          datasource:
+            - { name: DS_PROMETHEUS, value: Prometheus }
         minecraft-server-stats-updated:
           # renovate: depName="Minecraft Server Stats - Updated"
           gnetId: 21835
