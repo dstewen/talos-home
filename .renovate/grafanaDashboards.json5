@@ -23,7 +23,7 @@
   packageRules: [
     {
       addLabels: ["renovate/grafana-dashboard"],
-      automerge: true,
+      automerge: false,
       automergeType: "branch",
       commitMessageExtra: "({{currentVersion}} → {{newVersion}})",
       commitMessageTopic: "dashboard {{depName}}",
