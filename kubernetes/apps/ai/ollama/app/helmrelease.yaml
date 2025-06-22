@@ -41,7 +41,8 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/joryirving/ollama-intel-gpu
+              # repository: ghcr.io/joryirving/ollama-intel-gpu
+              repository: intelanalytics/ipex-llm-inference-cpp-xpu
               tag: latest
               # tag: ipex-llm-v.0.0.1-2
             securityContext:
@@ -49,12 +50,15 @@ spec:
             env:
               TZ: Australia/Melbourne
               #LIBVA_DRIVER_NAME: i965
+              no_proxy: localhost,127.0.0.1
               OLLAMA_HOST: 0.0.0.0
+              DEVICE: Arc
+              OLLAMA_INTEL_GPU: true
               OLLAMA_ORIGINS: "*"
               OLLAMA_LOG_LEVEL: debug
               OLLAMA_MODELS: /models
-              IPEX_LLM_NUM_CTX: 16384
-              ONEAPI_DEVICE_SELECTOR: level_zero:0
+              #IPEX_LLM_NUM_CTX: 16384
+              #ONEAPI_DEVICE_SELECTOR: level_zero:0
             resources:
               requests:
                 cpu: 2000m
