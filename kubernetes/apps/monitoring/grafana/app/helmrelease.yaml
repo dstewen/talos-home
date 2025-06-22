@@ -698,7 +698,7 @@ spec:
           gnetId: 9340
           revision: 1
           datasource:
-            - { name: DS_PROMETHEUS, value: Prometheus }
+            - { name: DS_CEPH-PROMETHEUS, value: Prometheus }
         ceph-fs-mds:
           # renovate: depName="Ceph - CephFS MDS Dashboard"
           gnetId: 12701
