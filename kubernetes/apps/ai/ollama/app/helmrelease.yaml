@@ -45,6 +45,10 @@ spec:
               repository: intelanalytics/ipex-llm-inference-cpp-xpu
               tag: latest
               # tag: ipex-llm-v.0.0.1-2
+            command:
+              - /bin/sh
+              - -c
+              - mkdir -p /llm/ollama && cd /llm/ollama && init-ollama && exec ./ollama serve
             securityContext:
               privileged: true
             env:
@@ -54,6 +58,8 @@ spec:
               OLLAMA_HOST: 0.0.0.0
               DEVICE: Arc
               OLLAMA_INTEL_GPU: true
+              OLLAMA_NUM_GPU: 999
+              ZES_ENABLE_SYSMAN: 1
               OLLAMA_ORIGINS: "*"
               OLLAMA_LOG_LEVEL: debug
               OLLAMA_MODELS: /models
