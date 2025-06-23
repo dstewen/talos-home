@@ -208,7 +208,7 @@ nodes:
     installDisk: "/dev/disk/by-id/nvme-WD_Blue_SN570_500GB_220628800811"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/d62d27140eb15f9b984bb8277c9f4bab1ed83435edc09afa553f075ef323f103
+    talosImageURL: factory.talos.dev/installer/de1619e16531ddff67ccb4ce636a5e3ba5197eb4fc0e8421f095ec50ce9d26a6
     controlPlane: false
     networkInterfaces:
         #bond0
