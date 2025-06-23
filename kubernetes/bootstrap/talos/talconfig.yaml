@@ -2,6 +2,8 @@
 ---
 clusterName: kubernetes
 endpoint: https://192.168.10.254:6443
+talosVersion: v1.9.6  # Set to allow for schema changes via talosctl upgrade
+kubernetesVersion: v1.32.4
 
 clusterPodNets:
   - "10.69.0.0/16"
