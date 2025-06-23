@@ -59,13 +59,13 @@ spec:
 #      externalTrafficPolicy: Local
 #      loadBalancerIP: ${SVC_PIHOLE_IP}
       annotations:
-        lbipam.cilium.io/ips: 192.168.10.196
+        lbipam.cilium.io/ips: ${SVC_PIHOLEK_ADDR}
     serviceWeb:
       type: LoadBalancer
 #      externalTrafficPolicy: Local
 #      loadBalancerIP: ${SVC_PIHOLE_IP}
       annotations:
-        lbipam.cilium.io/ips: 192.168.10.196
+        lbipam.cilium.io/ips: ${SVC_PIHOLEK_ADDR}
     virtualHost: "piholek.${SECRET_DOMAIN}"
     ingress:
       enabled: true

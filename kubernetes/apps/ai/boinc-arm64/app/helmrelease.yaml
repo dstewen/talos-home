@@ -76,7 +76,7 @@ spec:
         controller: boinc-arm64
         type: LoadBalancer
         annotations:
-          lbipam.cilium.io/ips: 192.168.10.237
+          lbipam.cilium.io/ips: ${SVC_BOINC_ADDR_ARM64}
         ports:
           http:
             port: 80
