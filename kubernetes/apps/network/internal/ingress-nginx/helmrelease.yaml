@@ -27,7 +27,7 @@ spec:
       replicaCount: 1
       service:
         annotations:
-          lbipam.cilium.io/ips: "192.168.10.26"
+          lbipam.cilium.io/ips: ${INTERNAL_NGINX_LB}
         externalTrafficPolicy: Cluster
       ingressClassResource:
         name: internal
