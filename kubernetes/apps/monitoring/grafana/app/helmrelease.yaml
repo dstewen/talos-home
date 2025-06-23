@@ -638,7 +638,8 @@ spec:
           # renovate: depName="Prometheus metrics for External Secrets"
           gnetId: 21640
           revision: 4
-          datasource: Prometheus
+          datasource:
+            - { name: DS_METRICS, value: Prometheus }
         promtail-monitoring-metrics-logs:
           # renovate: depName="Promtail Monitoring - Metrics and Logs"
           gnetId: 20881
