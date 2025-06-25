@@ -59,13 +59,13 @@ nodes:
             vip:
               ip: 192.168.10.254
 # HomeLabServers_VLAN
-          - vlanId: 15
-            dhcp: false
-            mtu: 1500
+#          - vlanId: 15
+#            dhcp: false
+#            mtu: 1500
 # K3S_Services_VLAN (Cilim_BGP)
-          - vlanId: 20
-            dhcp: false
-            mtu: 1500
+#          - vlanId: 20
+#            dhcp: false
+#            mtu: 1500
 #          - vlanId: 40
 #            mtu: 1500
 #            addresses: [ "172.16.20.51/24" ]
@@ -82,9 +82,9 @@ nodes:
 #                gateway: "192.168.30.1"
 #                metric: 4096
 # IOT_VLAN (Multus)
-          - vlanId: 100
-            dhcp: false
-            mtu: 1500
+#          - vlanId: 100
+#            dhcp: false
+#            mtu: 1500
     extensionServices:
       - name: nut-client
         configFiles:
@@ -131,13 +131,13 @@ nodes:
             vip:
               ip: 192.168.10.254
 # HomeLabServers_VLAN
-          - vlanId: 15
-            dhcp: false
-            mtu: 1500
+#          - vlanId: 15
+#            dhcp: false
+#            mtu: 1500
 # K3S_Services_VLAN (Cilim_BGP)
-          - vlanId: 20
-            dhcp: false
-            mtu: 1500
+#          - vlanId: 20
+#            dhcp: false
+#            mtu: 1500
 #          - vlanId: 40
 #            mtu: 1500
 #            addresses: [ "172.16.20.52/24" ]
@@ -154,9 +154,9 @@ nodes:
 #                gateway: "192.168.30.1"
 #                metric: 4096
 # IOT_VLAN (Multus)
-          - vlanId: 100
-            dhcp: false
-            mtu: 1500
+#          - vlanId: 100
+#            dhcp: false
+#            mtu: 1500
     extensionServices:
       - name: nut-client
         configFiles:
@@ -203,13 +203,13 @@ nodes:
             vip:
               ip: 192.168.10.254
 # HomeLabServers_VLAN
-          - vlanId: 15
-            dhcp: false
-            mtu: 1500
+#          - vlanId: 15
+#            dhcp: false
+#            mtu: 1500
 # K3S_Services_VLAN (Cilim_BGP)
-          - vlanId: 20
-            dhcp: false
-            mtu: 1500
+#          - vlanId: 20
+#            dhcp: false
+#            mtu: 1500
 #          - vlanId: 40
 #            mtu: 1500
 #            addresses: [ "172.16.20.53/24" ]
@@ -226,9 +226,9 @@ nodes:
 #                gateway: "192.168.30.1"
 #                metric: 4096
 # IOT_VLAN (Multus)
-          - vlanId: 100
-            dhcp: false
-            mtu: 1500
+#          - vlanId: 100
+#            dhcp: false
+#            mtu: 1500
     extensionServices:
       - name: nut-client
         configFiles:
@@ -262,13 +262,13 @@ nodes:
                 gateway: "192.168.10.1"
                 metric: 1
 # HomeLabServers_VLAN
-          - vlanId: 15
-            dhcp: false
-            mtu: 1500
+#          - vlanId: 15
+#            dhcp: false
+#            mtu: 1500
 # K3S_Services_VLAN (Cilim_BGP)
-          - vlanId: 20
-            dhcp: false
-            mtu: 1500
+#          - vlanId: 20
+#            dhcp: false
+#            mtu: 1500
 #          - vlanId: 40
 #            mtu: 1500
 #            addresses: [ "172.16.20.35/24" ]
@@ -285,9 +285,9 @@ nodes:
 #                gateway: "192.168.30.1"
 #                metric: 4096
 # IOT_VLAN (Multus)
-          - vlanId: 100
-            dhcp: false
-            mtu: 1500
+#          - vlanId: 100
+#            dhcp: false
+#            mtu: 1500
     extensionServices:
       - name: nut-client
         configFiles:
@@ -320,13 +320,13 @@ nodes:
                 gateway: "192.168.10.1"
                 metric: 1
 # HomeLabServers_VLAN
-          - vlanId: 15
-            dhcp: false
-            mtu: 1500
+#          - vlanId: 15
+#            dhcp: false
+#            mtu: 1500
 # K3S_Services_VLAN (Cilim_BGP)
-          - vlanId: 20
-            dhcp: false
-            mtu: 1500
+#          - vlanId: 20
+#            dhcp: false
+#            mtu: 1500
 #          - vlanId: 40
 #            mtu: 1500
 #            addresses: [ "172.16.20.36/24" ]
@@ -343,9 +343,9 @@ nodes:
 #                gateway: "192.168.30.1"
 #                metric: 4096
 # IOT_VLAN (Multus)
-          - vlanId: 100
-            dhcp: false
-            mtu: 1500
+#          - vlanId: 100
+#            dhcp: false
+#            mtu: 1500
     extensionServices:
       - name: nut-client
         configFiles:
@@ -379,13 +379,13 @@ nodes:
                 gateway: "192.168.10.1"
                 metric: 1
 # HomeLabServers_VLAN
-          - vlanId: 15
-            dhcp: false
-            mtu: 1500
+#          - vlanId: 15
+#            dhcp: false
+#            mtu: 1500
 # K3S_Services_VLAN (Cilim_BGP)
-          - vlanId: 20
-            dhcp: false
-            mtu: 1500
+#          - vlanId: 20
+#            dhcp: false
+#            mtu: 1500
 #          - vlanId: 40
 #            mtu: 1500
 #            addresses: [ "172.16.20.37/24" ]
@@ -402,9 +402,9 @@ nodes:
 #                gateway: "192.168.30.1"
 #                metric: 4096
 # IOT_VLAN (Multus)
-          - vlanId: 100
-            dhcp: false
-            mtu: 1500
+#          - vlanId: 100
+#            dhcp: false
+#            mtu: 1500
     extensionServices:
       - name: nut-client
         configFiles:
@@ -438,13 +438,13 @@ nodes:
                 gateway: "192.168.10.1"
                 metric: 1
 # HomeLabServers_VLAN
-          - vlanId: 15
-            dhcp: false
-            mtu: 1500
+#          - vlanId: 15
+#            dhcp: false
+#            mtu: 1500
 # K3S_Services_VLAN (Cilim_BGP)
-          - vlanId: 20
-            dhcp: false
-            mtu: 1500
+#          - vlanId: 20
+#            dhcp: false
+#            mtu: 1500
 #          - vlanId: 40
 #            mtu: 1500
 #            addresses: [ "172.16.20.38/24" ]
@@ -461,9 +461,9 @@ nodes:
 #                gateway: "192.168.30.1"
 #                metric: 4096
 # IOT_VLAN (Multus)
-          - vlanId: 100
-            dhcp: false
-            mtu: 1500
+#          - vlanId: 100
+#            dhcp: false
+#            mtu: 1500
     extensionServices:
       - name: nut-client
         configFiles:
