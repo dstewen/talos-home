@@ -839,7 +839,7 @@ spec:
         trivy-operator-vulnerabilities:
           # renovate: depName="Trivy Operator - Vulnerabilities"
           gnetId: 16337
-          revision: 14
+          revision: 15
           datasource: Prometheus
         trivy-operator-dashboard:
           # renovate: depName="Trivy Operator Dashboard"
